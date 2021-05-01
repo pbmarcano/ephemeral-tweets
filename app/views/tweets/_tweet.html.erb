@@ -1,3 +1,3 @@
-<p> --- <%= tweet.created_at.to_s(:short) %> --- </p>
+<hr />
 <p><%= tweet.text %></p>
-<p> - @<%= tweet.user.screen_name %></p>
+<p>Retweets: <%= tweet.retweet_count %> - Favorites: <%= tweet.favorite_count %> | <%= tweet.created_at.strftime("%b %d, %Y") %></p>
