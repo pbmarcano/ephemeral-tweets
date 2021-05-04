@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EphemeralTweets</title>
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield(:title) %> |
+      <% end %>
+      Ephemeral Tweets
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +16,17 @@
   </head>
 
   <body>
+    <h1>EphemeralTweets</h1>
+    <% if current_user.present? %>
+      <%= image_tag current_user.profile_image %>
+      <p>
+      Signed in as <%= current_user.name %>. 
+      <%= link_to "Sign out?", session_path, method: :delete %>
+      </p>
+    <% else %>
+      <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

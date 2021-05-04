@@ -14,11 +14,6 @@ class User < ApplicationRecord
     return user
   end
 
-  def tweets_from(collection)
-    tweet_ids = collection.map(&:id)
-    return twitter.statuses(tweet_ids)
-  end
-
   def timeline
     twitter.user_timeline(id: uid)
   end

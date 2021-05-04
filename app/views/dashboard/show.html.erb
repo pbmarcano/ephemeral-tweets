@@ -1,12 +1,6 @@
-<h1>EphemeralTweets</h1>
-<% if current_user.present? %>
-  <%= image_tag current_user.profile_image %>
-  <p>
-  Signed in as <%= current_user.name %>. 
-  <%= link_to "Sign out?", session_path, method: :delete %>
-  </p>
-  <%= render "dashboard/deletion_queue" %>
-<% else %>
-  <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post %>
-<% end %>
+<% content_for :title, current_user&.name %>
 
+<% if current_user.present? %>
+  <%# <%= link_to "Up Next", up_next_path %1> %>
+  <%= render "dashboard/deletion_queue", tweets: @tweets %>
+<% end %>
