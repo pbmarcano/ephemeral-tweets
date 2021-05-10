@@ -1,0 +1,14 @@
+<nav style="display: flex; justify-content: space-between; max-width: 65ch; margin: 0 auto;">
+  <h1>Ephemeral Tweets</h1>
+  <div style="display: flex; align-items: center">
+    <% if current_user.present? %>
+      <p style="text-align: right">
+      Signed in as <%= current_user.name %><br />
+      <%= link_to "Sign out?", session_path, method: :delete %>
+      </p>
+      <%= image_tag current_user.profile_image, style: "border-radius: 100%; margin-left: 1rem;" %>
+    <% else %>
+      <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post %>
+    <% end %>
+  </div>
+</nav>
