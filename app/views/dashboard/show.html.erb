@@ -1,3 +1,3 @@
-<% content_for :title, current_user&.name %>
+<% content_for :title, current_user&.username %>
 
 <%= render("dashboard/deletion_queue", tweets: @tweets) if current_user.present?%>

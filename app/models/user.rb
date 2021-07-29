@@ -5,7 +5,7 @@
 #  id            :bigint           not null, primary key
 #  provider      :string
 #  uid           :string
-#  name          :string
+#  username      :string
 #  token         :string
 #  secret        :string
 #  profile_image :string
@@ -19,7 +19,7 @@ class User < ApplicationRecord
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])
 
     user.update(
-      name: hash.info.name,
+      username: hash.info.nickname,
       profile_image: hash.info.image,
       token: hash.credentials.token,
       secret: hash.credentials.secret

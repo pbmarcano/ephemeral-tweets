@@ -5,7 +5,7 @@
 #  id            :bigint           not null, primary key
 #  provider      :string
 #  uid           :string
-#  name          :string
+#  username      :string
 #  token         :string
 #  secret        :string
 #  profile_image :string
