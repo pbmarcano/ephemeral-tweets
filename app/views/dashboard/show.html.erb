@@ -1,3 +1,15 @@
 <% content_for :title, current_user&.username %>
 
-<%= render("dashboard/deletion_queue", tweets: @tweets) if current_user.present?%>
+<% if current_user.present? %>
+  <br />
+
+  <div style="float: right;">
+    <label for="sweep">Sweep tweets</label>
+    <input type="checkbox" id="sweep" name="sweep">
+  </div>
+
+  <br />
+
+  <h3>Tweets to be deleted</h3>
+  <%= render partial: "tweets/tweet", collection: @tweets %>
+<% end %>
