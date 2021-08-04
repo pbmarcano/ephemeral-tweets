@@ -3,7 +3,7 @@
 <% if current_user.present? %>
   <br />
 
-  <%= button_to "Fetch new tweets", update_tweets_path, style: "float: left", method: :get %>
+  <%= button_to "Fetch new tweets", update_all_tweets_path, style: "float: left", method: :get %>
 
   <form style="float: right;">
     <label for="sweep">Sweep tweets</label>
