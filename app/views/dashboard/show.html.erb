@@ -3,10 +3,12 @@
 <% if current_user.present? %>
   <br />
 
-  <div style="float: right;">
+  <form style="float: right;">
     <label for="sweep">Sweep tweets</label>
     <input type="checkbox" id="sweep" name="sweep">
-  </div>
+
+    <input type="submit" value="Save">
+  </form>
 
   <br />
 

@@ -1,3 +1,6 @@
-<hr />
-<p><%= sanitize tweet.full_text %></p>
-<p><%= link_to tweet_date(tweet), tweet.url.to_s, target: "_blank" %></p>
+<%# <% cache tweet do %1> %>
+  <% tweet_data = current_user.twitter.status(tweet.tweet_id) %>
+  <hr />
+  <p><%= sanitize tweet_data.full_text %></p>
+  <p><%= link_to tweet_date(tweet), tweet_data.url.to_s, target: "_blank" %></p>
+<%# <% end %1> %>
