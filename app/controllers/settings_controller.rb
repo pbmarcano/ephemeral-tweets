@@ -1,0 +1,21 @@
+class SettingsController < ApplicationController
+  before_action :set_settings
+
+  def update
+    if @setting.update(setting_params)
+      redirect_to root_path, notice: "Success"
+    else
+      redirect_to root_path, notice: "Fail"
+    end
+  end
+
+  private
+
+  def set_settings
+    @setting = current_user.setting
+  end
+
+  def setting_params
+    params.require(:setting).permit(:sweeping, :time_threshold)
+  end
+end

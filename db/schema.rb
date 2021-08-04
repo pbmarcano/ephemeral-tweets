@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_192927) do
+ActiveRecord::Schema.define(version: 2021_08_04_182651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "settings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.boolean "sweeping", default: false
+    t.integer "time_threshold", default: 365
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_settings_on_user_id"
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.bigint "tweet_id", null: false
@@ -36,5 +45,6 @@ ActiveRecord::Schema.define(version: 2021_08_02_192927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "settings", "users"
   add_foreign_key "tweets", "users"
 end

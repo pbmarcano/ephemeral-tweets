@@ -15,7 +15,10 @@
 class User < ApplicationRecord
   include TwitterClient
 
+  has_one  :setting
   has_many :tweets
+
+  after_create { Setting.create(user: self) }
 
   def self.find_or_create_from_auth_hash(hash)
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])

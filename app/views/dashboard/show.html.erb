@@ -5,13 +5,15 @@
 
   <%= button_to "Fetch new tweets", update_all_tweets_path, style: "float: left", method: :get %>
 
-  <form style="float: right;">
-    <label for="sweep">Sweep tweets</label>
-    <input type="checkbox" id="sweep" name="sweep">
+  <%= form_with(model: current_user.setting, html: {style: "float: right;"}) do |form| %>
+    <%= form.label :time_threshold %>
+    <%= form.select :time_threshold, [7, 30, 90, 180, 365] %>
 
-    <input type="submit" value="Save">
-  </form>
+    <%= form.label :sweeping %>
+    <%= form.check_box :sweeping %>
 
+    <%= form.submit "Save" %>
+  <% end %>
   <br />
 
   <h3>Tweets to be deleted</h3>
