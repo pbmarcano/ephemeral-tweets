@@ -6,6 +6,6 @@ namespace :tweets do
 
   desc "Delete outdated tweets for users"
   task sweep: :environment do
-    SetupSweepingUsersJob.perform_later
+    SetupSweepingJob.perform_later
   end
 end

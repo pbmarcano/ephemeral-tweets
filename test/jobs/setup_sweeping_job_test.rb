@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SetupSweepingUsersJobTest < ActiveJob::TestCase
+class SetupSweepingJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

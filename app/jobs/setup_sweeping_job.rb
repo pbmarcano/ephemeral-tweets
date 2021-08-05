@@ -1,4 +1,4 @@
-class SetupSweepingUsersJob < ApplicationJob
+class SetupSweepingJob < ApplicationJob
   queue_as :default
 
   def perform
