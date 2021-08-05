@@ -1,7 +1,7 @@
 namespace :tweets do
   desc "Fetch new tweets from users"
   task fetch: :environment do
-    # TODO: Create jobs to collect user tweets
+    SetupFetchingJob.perform_later
   end
 
   desc "Delete outdated tweets for users"
