@@ -18,7 +18,10 @@ class User < ApplicationRecord
   has_one  :setting
   has_many :tweets
 
-  after_create { Setting.create(user: self) }
+  after_create do
+    FetchTweetsJob.perform_later(self)
+    Setting.create(user: self)
+  end
 
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
 
