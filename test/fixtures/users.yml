@@ -14,17 +14,17 @@
 #
 
 one:
-  provider: MyString
-  uid: MyString
-  username: MyString
+  provider: Twitter
+  uid: 478934278437894
+  username: SovereignChimp
   token: MyString
   secret: MyString
   profile_image: MyString
 
 two:
-  provider: MyString
-  uid: MyString
-  username: MyString
+  provider: Twitter
+  uid: 87547438348792
+  username: pbmarcano
   token: MyString
   secret: MyString
   profile_image: MyString

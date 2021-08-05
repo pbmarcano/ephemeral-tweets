@@ -2,10 +2,10 @@
 
 one:
   user: one
-  sweeping: false
-  time_threshold: 1
+  sweeping: true
+  time_threshold: 7
 
 two:
   user: two
   sweeping: false
-  time_threshold: 1
+  time_threshold: 365
