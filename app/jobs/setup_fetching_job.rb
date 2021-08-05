@@ -3,6 +3,7 @@ class SetupFetchingJob < ApplicationJob
 
   def perform
     User.all.each do |user|
+      puts "Fetching tweets for #{user.username}"
       FetchTweetsJob.perform_later(user)
     end
   end
