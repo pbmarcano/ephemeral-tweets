@@ -1,4 +1,4 @@
-<% cache tweet do %>
+<%# <% cache tweet do %1> %>
   <% tweet_data = current_user.twitter.status(tweet.tweet_id) %>
   <hr />
   <p><%= sanitize tweet_data.full_text %></p>
@@ -8,4 +8,4 @@
   <p>
   <%= link_to "Delete Tweet Now", tweet_path(tweet), style: "color: red;", method: :delete %>
   </p>
-<% end %>
+<%# <% end %1> %>
