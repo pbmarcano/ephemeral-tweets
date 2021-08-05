@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   after_create { Setting.create(user: self) }
 
+  scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
+
+  delegate :time_threshold, to: :setting
+
   def self.find_or_create_from_auth_hash(hash)
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])
 
@@ -33,7 +37,17 @@ class User < ApplicationRecord
     return user
   end
 
+  def tweets_ready_for_deletion
+    tweets.where(published_at: ..threshold_date)
+  end
+
   def timeline
     twitter.user_timeline(id: uid)
+  end
+
+  private
+
+  def threshold_date
+    Time.now.utc - time_threshold.days
   end
 end

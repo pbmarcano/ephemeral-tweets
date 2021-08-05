@@ -2,6 +2,7 @@ class DeleteTweetJob < ApplicationJob
   queue_as :default
 
   def perform(tweet)
+    puts "DeleteTweetJob for #{tweet.tweet_id}"
     @tweet = tweet
 
     begin

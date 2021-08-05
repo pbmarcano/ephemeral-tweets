@@ -15,7 +15,10 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "scoped users who've enabled sweeping" do
+    active_users = User.enabled_sweeping
+    user2 = users(:two)
+
+    assert active_users.exclude?(user2)
+  end
 end
