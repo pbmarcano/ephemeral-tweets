@@ -3,7 +3,7 @@ class SetupSweepingUsersJob < ApplicationJob
 
   def perform
     User.enabled_sweeping.each do |user|
-      QueueTweetDeletionsJob.perform_now(user)
+      QueueTweetDeletionsJob.perform_later(user)
     end
   end
 end
