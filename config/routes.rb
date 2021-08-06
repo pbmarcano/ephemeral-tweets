@@ -16,10 +16,6 @@ Rails.application.routes.draw do
   
   resource :session, only: :destroy
   resources :settings, only: :update
-  resources :tweets, only: :destroy do
-    collection do
-      get 'update_all'
-    end
-  end
+  resources :tweets, only: :destroy
   root "dashboard#show"
 end
