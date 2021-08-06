@@ -3,9 +3,7 @@
   <hr />
   <p><%= sanitize tweet_data.full_text %></p>
   <p>
-  <%= link_to tweet_date(tweet), tweet_data.url.to_s, target: "_blank" %>
-  </p>
-  <p>
-  <%= link_to "Delete Tweet Now", tweet_path(tweet), style: "color: red;", method: :delete %>
+  <%= link_to tweet_date(tweet), tweet_data.url.to_s, target: "_blank" %> | 
+  <%= link_to "Delete Tweet Now", tweet_path(tweet), style: "color: red;", method: :delete, data: { confirm: "Are you sure? You will be deleting this tweet off twitter forever" } %>
   </p>
 <%# <% end %1> %>

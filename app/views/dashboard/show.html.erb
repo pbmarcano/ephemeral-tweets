@@ -3,12 +3,14 @@
 <% if current_user.present? %>
   <br />
 
-  <%= form_with(model: current_user.setting, html: {style: "float: right;"}) do |form| %>
-    <%= form.label :time_threshold %>
-    <%= form.select :time_threshold, [7, 30, 90, 180, 365] %>
-
-    <%= form.label :sweeping %>
+  <%= form_with(model: current_user.setting) do |form| %>
+    <%= form.label :sweeping, style: "display: none;" %>
     <%= form.check_box :sweeping %>
+
+    <span>Sweep tweets after </span>
+    <%= form.label :time_threshold, style: "display: none;" %>
+    <%= form.select :time_threshold, [7, 30, 90, 180, 365] %>
+    <span> days</span>
 
     <%= form.submit "Save" %>
   <% end %>
