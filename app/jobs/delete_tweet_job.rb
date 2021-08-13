@@ -7,7 +7,7 @@ class DeleteTweetJob < ApplicationJob
 
     # begin
     delete_from_twitter
-    tweet.destroy
+    @tweet.destroy
     # rescue StandardError => e
     #   puts e.inspect
     #   puts "Error deleting #{tweet.id}; exiting"
@@ -19,13 +19,15 @@ class DeleteTweetJob < ApplicationJob
 
   private
 
-  attr_reader :tweet
-
   def delete_from_twitter
-    client.destroy_status(tweet.tweet_id)
+    client.destroy_status(@tweet.tweet_id)
+  rescue Twitter::Error::NotFound
+    # if can't be found on twitter, delete locally
+    # @tweet.destroy
+    return nil
   end
 
   def client
-    @client ||= tweet.user.twitter
+    @client ||= @tweet.user.twitter
   end
 end
