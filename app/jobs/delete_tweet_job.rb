@@ -5,16 +5,16 @@ class DeleteTweetJob < ApplicationJob
     puts "DeleteTweetJob for #{tweet.tweet_id}"
     @tweet = tweet
 
-    begin
-      delete_from_twitter
-      tweet.destroy
-    rescue StandardError => e
-      puts e.inspect
-      puts "Error deleting #{tweet.id}; exiting"
-      exit
-    else
-      puts "Deleted #{tweet.id}"
-    end
+    # begin
+    delete_from_twitter
+    tweet.destroy
+    # rescue StandardError => e
+    #   puts e.inspect
+    #   puts "Error deleting #{tweet.id}; exiting"
+    #   exit
+    # else
+    #   puts "Deleted #{tweet.id}"
+    # end
   end
 
   private
