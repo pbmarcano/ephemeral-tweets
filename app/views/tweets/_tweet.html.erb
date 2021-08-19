@@ -1,9 +1,11 @@
 <%# <% cache tweet do %1> %>
-  <% tweet_data = current_user.twitter.status(tweet.tweet_id) %>
   <hr />
-  <p><%= sanitize tweet_data.full_text %></p>
+  <p><%= sanitize tweet.full_text %></p>
   <p>
-  <%= link_to tweet_date(tweet), tweet_data.url.to_s, target: "_blank" %> | 
-  <%= link_to "Delete Tweet Now", tweet_path(tweet), style: "color: red;", method: :delete, data: { confirm: "Are you sure? You will be deleting this tweet off twitter forever" } %>
+  <%= link_to tweet.date, tweet.url, target: "_blank" %>
+  <small style="float: right;">
+    deletes in [blank] days
+    (<%= link_to "delete now", tweet_path(tweet.tweet), style: "color: red;", method: :delete, data: { confirm: "Are you sure? You will be deleting this tweet off twitter forever" } %>)
+  </small>
   </p>
 <%# <% end %1> %>

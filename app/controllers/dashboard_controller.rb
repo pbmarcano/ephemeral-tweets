@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def show
-    @tweets = current_user&.tweets&.oldest_first
+    db_tweets = current_user&.tweets&.oldest_first
+    @tweets = db_tweets&.map { |t| TweetDecorator.new(t) }
   end
 end
