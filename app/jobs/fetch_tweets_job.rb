@@ -10,11 +10,15 @@ class FetchTweetsJob < ApplicationJob
   private
 
   def make_tweet(tweet, user)
-    Tweet.find_or_create_by(
-      tweet_id: tweet.id, 
-      user: user, 
-      published_at: tweet.created_at
+    t = Tweet.find_or_initialize_by(tweet_id: tweet.id, user: user)
+
+    t.assign_attributes(
+      published_at: tweet.created_at.to_datetime,
+      full_text: tweet.full_text,
+      url: tweet.url.to_s
     )
+
+    t.save
   end
 
   def fetched_tweets_by(user)
@@ -28,6 +32,11 @@ class FetchTweetsJob < ApplicationJob
   def collect_with_max_id(collection=[], max_id=nil, &block)
     response = yield(max_id)
     collection += response
-    response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
+
+    if response.empty?
+      collection.flatten 
+    else
+      collect_with_max_id(collection, response.last.id - 1, &block)
+    end
   end
 end

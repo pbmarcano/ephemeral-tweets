@@ -6,6 +6,11 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
+  def fetch
+    FetchTweetsJob.perform_now(current_user)
+    redirect_to root_path
+  end
+
   private
 
   def set_tweet

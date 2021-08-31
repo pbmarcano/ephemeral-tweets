@@ -19,13 +19,14 @@ class User < ApplicationRecord
   has_many :tweets
 
   after_create do
-    FetchTweetsJob.perform_later(self)
     Setting.create(user: self)
+    FetchTweetsJob.perform_later(self)
   end
 
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
 
   delegate :time_threshold, to: :setting
+  delegate :sweeping?, to: :setting
 
   def self.find_or_create_from_auth_hash(hash)
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])

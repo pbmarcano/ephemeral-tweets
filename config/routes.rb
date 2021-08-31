@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   
   resource :session, only: :destroy
   resources :settings, only: :update
-  resources :tweets, only: :destroy
+  resources :tweets, only: :destroy do
+    collection do
+      get :fetch
+    end
+  end
   root "dashboard#show"
 end
