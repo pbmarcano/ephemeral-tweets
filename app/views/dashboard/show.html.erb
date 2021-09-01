@@ -13,10 +13,12 @@
   <% end %>
   <br />
 
-  <% if Rails.env.development? %>
-    <%= link_to "Fetch new tweets", fetch_tweets_path %>
-  <% end %>
-
   <h3><%= timeline_title_for(current_user) %></h3>
   <%= render partial: "tweets/tweet", collection: @tweets %>
+
+  <% if Rails.env.development? %>
+    <hr />
+    <br />
+    <%= link_to "Fetch new tweets", fetch_tweets_path %>
+  <% end %>
 <% end %>
