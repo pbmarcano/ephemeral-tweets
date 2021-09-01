@@ -3,7 +3,7 @@
 <p>
 <%= link_to tweet.published_at.strftime("%b %d, %Y"), tweet.url, target: "_blank" %>
 <small style="float: right;">
-  deletes in [blank] days
-  (<%= link_to "delete now", tweet_path(tweet), style: "color: red;", method: :delete, data: { confirm: "Are you sure? You will be deleting this tweet off twitter forever" } %>)
+  <%= delete_countdown(tweet) %>
+  (<%= delete_now(tweet) %>)
 </small>
 </p>
