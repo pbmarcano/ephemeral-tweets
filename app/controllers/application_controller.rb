@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
+  def authenticate_user!
+    redirect_to home_path unless current_user.present?
+  end
 end

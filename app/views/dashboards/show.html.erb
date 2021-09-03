@@ -1,0 +1,43 @@
+<% content_for :title, current_user.username %>
+
+<%= form_with(
+  model: current_user.setting, 
+  class: "my-16", 
+  data: { turbo_frame: "timeline" }) do |form| %>
+
+  <div class="flex justify-center space-x-3 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+    <%= form.label :time_threshold, "Sweep tweets after" %>
+    <%= form.select :time_threshold, 
+      [7, 30, 90, 180, 365],
+      {},
+      { 
+        class: "rounded shadow border-gray-300",
+        onchange: "this.form.requestSubmit()"
+      } %>
+    <span>days</span>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit "Update Settings" %>
+  </div>
+
+  <div class="text-center my-8">
+    <%= form.label :sweeping, "Enable sweeping?" %>
+    <%= form.check_box :sweeping, class: "h-8 w-8 rounded text-green-500" %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit "Update Settings" %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "timeline" do %>
+  <h3><%= timeline_title_for(current_user) %></h3>
+  <%= render partial: "tweets/tweet", collection: @tweets %>
+<% end %>
+
+<% if Rails.env.development? %>
+  <%= link_to "Fetch new tweets", fetch_tweets_path %>
+<% end %>
+
+<%= link_to "Sign out", session_path, method: :delete, class: "text-red-500" %>

@@ -1,12 +1,15 @@
 <nav class="flex items-center justify-between max-w-prose mx-auto my-8">
-  <h1>Tweet Sweeper</h1>
+  <%= link_to home_path do %>
+    <h1>Tweet Sweeper</h1>
+  <% end %>
   <div class="flex items-center">
     <% if current_user.present? %>
-      <p class="text-right">
-      Signed in as @<%= current_user.username %><br />
-      <%= link_to "Sign out", session_path, method: :delete, class: "text-red-500" %>
-      </p>
-      <%= image_tag current_user.profile_image, class: "ml-4 rounded-full" %>
+      <%= link_to dashboard_path, class: "flex items-center border shadow rounded-lg p-2" do %>
+        <%= image_tag current_user.profile_image, class: "mr-4 rounded-full" %>
+        <div class="text-right">
+          Go to Dashboard &rarr;
+        </div>
+      <% end %>
     <% else %>
       <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post, data: { turbo: false } %>
     <% end %>
