@@ -13,12 +13,13 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
   </head>
 
   <body>
     <%= render "shared/nav" %>
 
-    <main style="max-width: 65ch; margin: 0 auto;">
+    <main class="max-w-prose mx-auto">
       <%= yield %>
     </main>
   </body>

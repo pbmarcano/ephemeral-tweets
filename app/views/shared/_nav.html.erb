@@ -1,12 +1,12 @@
-<nav style="display: flex; justify-content: space-between; max-width: 65ch; margin: 0 auto;">
+<nav class="flex justify-between max-w-prose mx-auto">
   <h1>Tweet Sweeper</h1>
-  <div style="display: flex; align-items: center">
+  <div class="flex items-center">
     <% if current_user.present? %>
-      <p style="text-align: right">
+      <p class="text-right">
       Signed in as @<%= current_user.username %><br />
       <%= link_to "Sign out?", session_path, method: :delete %>
       </p>
-      <%= image_tag current_user.profile_image, style: "border-radius: 100%; margin-left: 1rem;" %>
+      <%= image_tag current_user.profile_image, class: "ml-4 rounded-full" %>
     <% else %>
       <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post %>
     <% end %>
