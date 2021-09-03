@@ -8,7 +8,7 @@
       </p>
       <%= image_tag current_user.profile_image, class: "ml-4 rounded-full" %>
     <% else %>
-      <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post %>
+      <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post, data: { turbo: false } %>
     <% end %>
   </div>
 </nav>
