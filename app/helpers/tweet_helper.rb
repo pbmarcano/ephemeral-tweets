@@ -3,10 +3,19 @@ module TweetHelper
     return "deletes in #{delete_timeline(tweet)}"
   end
 
-  def delete_now(tweet)
+  def date_link_to(tweet)
+    return link_to(
+      tweet.published_at.strftime("%b %d, %Y"), 
+      tweet.url, 
+      class: "text-blue-600 underline",
+      target: "_blank" 
+    )
+  end
+
+  def delete_now_link(tweet)
     return link_to "delete now", 
       tweet_path(tweet), 
-      style: "color: red;", 
+      class: "text-red-500",
       method: :delete, 
       data: { 
         confirm: "Are you sure? You will be deleting this tweet off twitter forever" 

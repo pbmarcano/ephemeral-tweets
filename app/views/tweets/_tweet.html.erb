@@ -1,9 +1,9 @@
-<hr />
-<p><%= sanitize tweet.full_text %></p>
-<p>
-<%= link_to tweet.published_at.strftime("%b %d, %Y"), tweet.url, target: "_blank" %>
-<small style="float: right;">
-  <%= delete_countdown(tweet) %>
-  (<%= delete_now(tweet) %>)
-</small>
-</p>
+<article class="my-4 border-t">
+  <p class="my-4"><%= sanitize tweet.full_text %></p>
+  <div class="flex justify-between">
+    <%= date_link_to(tweet) %>
+    <small class="text-right">
+      <%= delete_countdown(tweet) %> (<%= delete_now_link(tweet) %>)
+    </small>
+  </div>
+</article>
