@@ -3,7 +3,7 @@
 <%= turbo_frame_tag "settings" do %>
   <%= form_with(
     model: current_user.setting, 
-    class: "my-16", 
+    class: "mt-24 mb-10", 
     data: { 
       turbo_frame: "timeline",
       controller: "autosubmit",
@@ -16,7 +16,7 @@
         [7, 30, 90, 180, 365],
         {},
         { 
-          class: "rounded shadow border-gray-300",
+          class: "mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
           data: { action: "autosubmit#submit" }
         } %>
       <div>days</div>
@@ -24,7 +24,7 @@
 
     <div class="flex justify-center items-center my-4 text-xl text-gray-500">
       <%= form.check_box :sweeping, 
-        class: "h-4 w-4 rounded text-green-500 mr-2",
+        class: "h-4 w-4 rounded text-green-500 mr-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500",
         data: { action: "autosubmit#submit" } %> 
       <%= form.label :sweeping, "Sweep tweets" %>
     </div>
@@ -36,12 +36,16 @@
 <% end %>
 
 <%= turbo_frame_tag "timeline" do %>
-  <h3><%= timeline_title_for(current_user) %></h3>
-  <%= render @tweets %>
+  <div class="bg-white shadow-lg border border-gray-100 overflow-hidden rounded-lg">
+    <ul role="list" class="divide-y divide-gray-200">
+      <%= render @tweets %>
+    </ul>
+  </div>
 <% end %>
 
-<% if Rails.env.development? %>
-  <%= link_to "Fetch new tweets", fetch_tweets_path %>
-<% end %>
-
-<%= link_to "Sign out", session_path, method: :delete, class: "text-red-500" %>
+<ul role="list" class="my-8 flex justify-center divide-x space-x-8">
+  <% if Rails.env.development? %>
+    <li><%= link_to "Fetch new tweets", fetch_tweets_path %></li>
+  <% end %>
+  <li><%= link_to "Sign out", session_path, method: :delete, class: "text-red-500" %></li>
+</ul>

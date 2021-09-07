@@ -1,6 +1,10 @@
 module TweetHelper
   def delete_countdown(tweet)
-    return "deletes in #{delete_timeline(tweet)}"
+    if sweeping?(tweet)
+      return "deletes in #{delete_timeline(tweet)}"
+    else
+      return "would delete in #{delete_timeline(tweet)}"
+    end
   end
 
   def date_link_to(tweet)
@@ -35,6 +39,14 @@ module TweetHelper
   end
 
   def threshold(tweet)
-    @threshold ||= tweet.user.time_threshold
+    @threshold ||= user_settings(tweet).time_threshold
+  end
+
+  def sweeping?(tweet)
+    @sweeping ||= user_settings(tweet).sweeping
+  end
+
+  def user_settings(tweet)
+    @user_settings ||= tweet.user.setting
   end
 end
