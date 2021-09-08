@@ -1,0 +1,5 @@
+<% unless current_user.present? %>
+  <%= button_to "Sign in with Twitter", "/auth/twitter", method: :post, data: { turbo: false } %>
+<% else %>
+  <%= link_to "Go to dashboard", dashboard_path %>
+<% end %>
