@@ -11,7 +11,7 @@ module TweetHelper
     return link_to(
       tweet.published_at.strftime("%b %d, %Y"), 
       tweet.url, 
-      class: "text-blue-600 underline",
+      class: "text-sky-600 hover:underline",
       target: "_blank" 
     )
   end
@@ -19,7 +19,7 @@ module TweetHelper
   def delete_now_link(tweet)
     return link_to "delete now", 
       tweet_path(tweet), 
-      class: "text-red-500",
+      class: "text-red-500 hover:underline",
       method: :delete, 
       data: { 
         confirm: "Are you sure? You will be deleting this tweet off twitter forever" 

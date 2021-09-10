@@ -1,7 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
-    purge: [
+  purge: [
     './app/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
@@ -9,6 +10,14 @@ module.exports = {
 
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      current: 'currentColor',
+      gray: colors.blueGray,
+      sky: colors.sky,
+      white: colors.white,
+      red: colors.red,
+      black: colors.black
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
@@ -18,7 +27,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-    plugins: [
+  plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),

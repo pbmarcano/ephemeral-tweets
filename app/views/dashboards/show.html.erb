@@ -1,17 +1,19 @@
 <% content_for :title, current_user.username %>
 
-<%= render "setting_form" %>
+<main class="max-w-prose mx-auto">
+  <%= render "setting_form" %>
 
-<%= turbo_frame_tag "timeline" do %>
-  <div class="bg-white shadow-lg border border-gray-100 overflow-hidden rounded-lg">
-    <ul role="list" class="divide-y divide-gray-200">
-      <%= render @tweets %>
-    </ul>
-  </div>
-<% end %>
-
-<ul role="list" class="my-8 flex justify-center divide-x space-x-8">
-  <% if Rails.env.development? %>
-    <li><%= link_to "Fetch new tweets", fetch_tweets_path %></li>
+  <%= turbo_frame_tag "timeline" do %>
+    <div class="bg-white shadow-lg border border-gray-100 overflow-hidden rounded-lg">
+      <ul role="list" class="divide-y divide-gray-200">
+        <%= render @tweets %>
+      </ul>
+    </div>
   <% end %>
-</ul>
+
+  <ul role="list" class="my-8 flex justify-center divide-x space-x-8">
+    <% if Rails.env.development? %>
+      <li><%= link_to "Fetch new tweets", fetch_tweets_path %></li>
+    <% end %>
+  </ul>
+</main>
