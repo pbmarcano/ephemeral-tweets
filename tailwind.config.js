@@ -8,7 +8,7 @@ module.exports = {
     './app/javascript/**/*.js',
   ],
 
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class' // or false
   theme: {
     colors: {
       current: 'currentColor',
