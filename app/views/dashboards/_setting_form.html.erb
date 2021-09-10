@@ -7,21 +7,21 @@
     autosubmit_target: "form"
   }) do |form| %>
 
-  <div class="flex justify-center space-x-3 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+  <div class="flex justify-center space-x-3 text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-gray-300 sm:text-4xl">
     <%= form.label :time_threshold, "Sweep tweets after" %>
     <%= form.select :time_threshold, 
       [7, 30, 90, 180, 365],
       {},
       { 
-        class: "mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
+        class: "mt-1 block pl-3 pr-10 py-2 text-base dark:bg-gray-700 border-gray-300 dark:border-gray-500 font-bold focus:outline-none focus:ring-sky-500 focus:border-indigo-500 sm:text-sm rounded-md",
         data: { action: "autosubmit#submit" }
       } %>
     <div>days</div>
   </div>
 
-  <div class="flex justify-center items-center my-4 text-xl text-gray-500">
+  <div class="flex justify-center items-center my-4 text-xl text-gray-500 dark:text-gray-400">
     <%= form.check_box :sweeping, 
-      class: "h-4 w-4 rounded text-green-500 mr-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500",
+      class: "h-4 w-4 rounded text-sky-500 dark:bg-gray-700 mr-2 border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
       data: { action: "autosubmit#submit" } %> 
     <%= form.label :sweeping, "Sweep tweets" %>
   </div>

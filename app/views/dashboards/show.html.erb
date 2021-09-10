@@ -4,8 +4,8 @@
   <%= render "setting_form" %>
 
   <%= turbo_frame_tag "timeline" do %>
-    <div class="bg-white shadow-lg border border-gray-100 overflow-hidden rounded-lg">
-      <ul role="list" class="divide-y divide-gray-200">
+    <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
+      <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-800">
         <%= render @tweets %>
       </ul>
     </div>
@@ -13,7 +13,7 @@
 
   <ul role="list" class="my-8 flex justify-center divide-x space-x-8">
     <% if Rails.env.development? %>
-      <li><%= link_to "Fetch new tweets", fetch_tweets_path %></li>
+      <li><%= link_to "Fetch new tweets", fetch_tweets_path, class: "text-gray-600 uppercase text-xs tracking-wider" %></li>
     <% end %>
   </ul>
 </main>
