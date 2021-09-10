@@ -15,8 +15,10 @@
 class User < ApplicationRecord
   include TwitterClient
 
-  has_one  :setting
-  has_many :tweets
+  pay_customer
+
+  has_one  :setting, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   after_create do
     Setting.create(user: self)
@@ -33,6 +35,7 @@ class User < ApplicationRecord
 
     user.update(
       username: hash.info.nickname,
+      email: hash.info.email,
       profile_image: hash.info.image,
       token: hash.credentials.token,
       secret: hash.credentials.secret
