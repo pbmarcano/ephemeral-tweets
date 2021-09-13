@@ -12,7 +12,9 @@ class DeleteTweetJob < ApplicationJob
 
   def delete_from_twitter
     client.destroy_status(@tweet.tweet_id)
-  rescue Twitter::Error::NotFound
+  rescue Twitter::Error::NotFound # Tweet was deleted elsewhere
+    return nil
+  rescue Twitter::Error::Forbidden # Retweeted thing is blocked or hidden
     return nil
   end
 
