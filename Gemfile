@@ -54,7 +54,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "airbrake", "~> 11.0"
+gem "honeybadger", "~> 4.9"
 gem "hotwire-rails", "~> 0.1.3"
 gem "omniauth-twitter", "~> 1.4"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
@@ -66,3 +66,4 @@ gem "sidekiq", "~> 6.2"
 gem "stripe", ">= 2.8", "< 6.0"
 gem "twitter", "~> 7.0"
 gem "whenever", "~> 1.0"
+
