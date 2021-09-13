@@ -1,4 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
@@ -17,11 +16,6 @@ module.exports = {
       white: colors.white,
       red: colors.red,
       black: colors.black
-    },
-    extend: {
-      fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      },
     },
   },
   variants: {
