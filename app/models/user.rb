@@ -57,6 +57,14 @@ class User < ApplicationRecord
     payment_processor.subscriptions.active.present?
   end
 
+  def billing_portal
+    if actively_subscribed?
+      payment_processor.billing_portal
+    else
+      nil
+    end
+  end
+
   private
 
   def threshold_date

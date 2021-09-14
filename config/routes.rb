@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   scope :monitor do
     # Sidekiq Basic Auth from routes on production environment
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
@@ -11,11 +12,10 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: '/sidekiq'
   end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/auth/:provider/callback", to: "sessions#create"
   
-  # get "billing", to: "billings#show"
-  get "checkout", to: "checkouts#show"
+  resource :billing, only: :show
+  resource :checkout, only: :show
   resource :dashboard, only: :show
   resource :home, only: :show
   resource :session, only: :destroy
