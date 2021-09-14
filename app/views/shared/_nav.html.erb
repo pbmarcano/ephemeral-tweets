@@ -1,7 +1,8 @@
 <header class="max-w-2xl my-2 px-2 md:px-0 mx-auto flex justify-between">
   <div class="flex items-center font-bold dark:text-gray-300">
-    <%= link_to root_path, class: "tracking-widest" do %>
-      🧹<span class="text-sky-600 dark:text-sky-500">Tweet</span>Sweeper
+    <%= link_to root_path do %>
+      <span class="text-2xl">🧹</span>
+      <span class="text-sky-600 dark:text-sky-500">Tweet</span> Sweeper
     <% end %>
   </div>
   <% if current_user.present? %>
