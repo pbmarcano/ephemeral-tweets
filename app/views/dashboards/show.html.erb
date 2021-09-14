@@ -1,6 +1,6 @@
 <% content_for :title, current_user.username %>
 
-<main class="max-w-prose mx-auto">
+<main class="max-w-2xl mx-auto">
   <%= render "setting_form" %>
 
   <%= turbo_frame_tag "timeline" do %>
@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <ul role="list" class="my-8 flex justify-center divide-x space-x-8">
-    <% if Rails.env.development? %>
-      <li><%= link_to "Fetch new tweets", fetch_tweets_path, class: "text-gray-600 uppercase text-xs tracking-wider" %></li>
-    <% end %>
-  </ul>
+  <% if current_user.actively_subscribed? %>
+    <div class="mt-6 uppercase text-center text-xs dark:text-gray-500">
+      <%= turbo_frame_tag "manage_billing", src: billing_path %>
+    </div>
+  <% end %>
 </main>
