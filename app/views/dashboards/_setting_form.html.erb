@@ -21,12 +21,19 @@
     </div>
   </div>
 
-  <div class="flex justify-center items-center my-4 text-xl text-gray-500 dark:text-gray-400">
-    <%= form.check_box :sweeping, 
-      class: "h-4 w-4 rounded text-sky-500 dark:bg-gray-700 mr-3 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
-      data: { action: "autosubmit#submit" } %> 
-    <%= form.label :sweeping, "Sweep tweets" %>
-  </div>
+  <% if current_user.actively_subscribed? %>
+    <div class="flex justify-center items-center my-4 text-xl text-gray-500 dark:text-gray-400">
+      <%= form.check_box :sweeping, 
+        class: "h-4 w-4 rounded text-sky-500 dark:bg-gray-700 mr-3 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
+        data: { action: "autosubmit#submit" } %> 
+      <%= form.label :sweeping, "Sweep tweets" %>
+    </div>
+  <% else %>
+    <div class="flex items-center flex-col prose mt-8">
+      <span class="dark:text-gray-500 uppercase font-semibold tracking-wide mb-2">Upgrade to start sweeping</span>
+      <%= turbo_frame_tag "checkout_button", src: checkout_path %>
+    </div>
+  <% end %>
 
   <div class="text-center" data-autosubmit-target="submit">
     <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-gray-200 shadow-md" %>

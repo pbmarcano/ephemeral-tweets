@@ -23,6 +23,7 @@ class User < ApplicationRecord
   after_create do
     Setting.create(user: self)
     FetchTweetsJob.perform_later(self)
+    set_payment_processor :stripe
   end
 
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
@@ -50,6 +51,10 @@ class User < ApplicationRecord
 
   def timeline
     twitter.user_timeline(id: uid)
+  end
+
+  def actively_subscribed?
+    payment_processor.subscriptions.active.present?
   end
 
   private

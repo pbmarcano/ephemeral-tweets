@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/auth/:provider/callback", to: "sessions#create"
   
+  # get "billing", to: "billings#show"
+  get "checkout", to: "checkouts#show"
   resource :dashboard, only: :show
   resource :home, only: :show
   resource :session, only: :destroy

@@ -1,0 +1,15 @@
+<div class="max-w-2xl mx-auto mt-16 sm:mt-24 prose">
+  <h1><span class="dark:text-gray-300">Get TweetSweeper</span></h1>
+  <p>
+  <span class="dark:text-gray-400 inline sm:block">Get TweetSweeper today to start purging your old tweets.</span>
+  </p>
+  <%= turbo_frame_tag "checkout_button" do %>
+    <%= render partial: "pay/stripe/checkout_button", 
+      locals: { 
+        session: @checkout_session, 
+        title: sanitize("<span class='font-black'>$29</span>&nbsp;per year"), 
+        class: "flex items-center justify-center px-8 py-3 border-b border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-900 dark:text-gray-300 bg-white dark:bg-gray-700 shadow-md md:py-4 md:text-lg md:px-10", 
+        style: nil 
+      } %>
+  <% end %>
+</div>
