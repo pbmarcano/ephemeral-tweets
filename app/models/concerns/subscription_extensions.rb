@@ -6,9 +6,7 @@ module SubscriptionExtensions
   end
 
   def disable_sweeping
-    unless self.status == "active"
-      disable_sweeping
-    end
+    disable_sweeping unless self.active?
   end
 
   private
