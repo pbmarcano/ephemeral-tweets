@@ -2,18 +2,18 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  scope :monitor do
-    # Sidekiq Basic Auth from routes on production environment
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_USERNAME"])) &
-        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_PASSWORD"]))
-    end if Rails.env.production?
-
-    mount Sidekiq::Web, at: '/sidekiq'
-  end
-
-  get "/auth/:provider/callback", to: "sessions#create"
   
+  # admin & development routes
+  # Sidekiq basic auth for production 
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_USERNAME"])) &
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_PASSWORD"]))
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: '/sidekiq'
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  # app routes
+  get "/auth/:provider/callback", to: "sessions#create"
   resource :billing, only: :show
   resource :checkout, only: :show
   resource :dashboard, only: :show
