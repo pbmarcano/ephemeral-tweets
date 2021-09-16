@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resource :home, only: :show
   resource :session, only: :destroy
   resources :settings, only: :update
-  resources :tweets, only: :destroy do
+  resources :tweets, only: [:show, :destroy] do
     collection do
       get :fetch
     end

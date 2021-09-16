@@ -1,5 +1,8 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: :destroy
+  before_action :set_tweet, except: :fetch
+  
+  def show
+  end
 
   def destroy
     DeleteTweetJob.perform_now(@tweet)
