@@ -3,5 +3,5 @@ Rails.application.config.to_prepare do
 end
 
 Pay.setup do |config|
-  config.support_email = "peter@marcano.io"
+  config.support_email = "peter@tweetsweeper.app"
 end
