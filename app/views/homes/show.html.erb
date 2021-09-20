@@ -11,7 +11,7 @@
     <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
       <div class="rounded-md shadow">
         <% unless current_user.present? %>
-          <%= button_to "/auth/twitter", 
+          <%= button_to "/auth/twitter/", 
             method: :post, 
             class: "w-full flex items-center justify-center px-8 py-3 border-b border-sky-700 text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-500 md:py-4 md:text-lg md:px-10",
             data: { turbo: false } do %>
