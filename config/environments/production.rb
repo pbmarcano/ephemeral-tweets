@@ -62,7 +62,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tweet_sweeper_production"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: "tweetsweeper.app" }
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = { api_token: Rails.application.credentials.postmark_api_token }
 
