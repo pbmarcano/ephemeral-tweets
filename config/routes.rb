@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_USERNAME"])) &
       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_AUTH_PASSWORD"]))
   end if Rails.env.production? || Rails.env.staging?
+  mount Blazer::Engine, at: "blazer"
   mount Sidekiq::Web, at: '/sidekiq'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development? || Rails.env.staging?
 
