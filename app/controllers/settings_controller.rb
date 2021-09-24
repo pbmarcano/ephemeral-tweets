@@ -3,6 +3,7 @@ class SettingsController < ApplicationController
 
   def update
     if @setting.update(setting_params)
+      ahoy.track "changed settings", @setting
       redirect_to dashboard_path, notice: "Success"
     else
       redirect_to dashboard_path, notice: "Fail"

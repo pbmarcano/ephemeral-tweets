@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   pay_customer
 
+  has_many :visits, class_name: "Ahoy::Visit"
+
   has_one  :setting, dependent: :destroy
   has_many :tweets, dependent: :destroy
 
