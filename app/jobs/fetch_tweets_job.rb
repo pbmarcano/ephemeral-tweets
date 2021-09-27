@@ -1,6 +1,10 @@
 class FetchTweetsJob < ApplicationJob
   queue_as :default
 
+  # retry on errors... see if this stops them from getting logged
+  retry_on HTTP::ConnectionError
+  retry_on ActiveJob::DeserializationError
+
   def perform(user)
     fetched_tweets_by(user).each do |tweet|
       make_tweet(tweet, user)
