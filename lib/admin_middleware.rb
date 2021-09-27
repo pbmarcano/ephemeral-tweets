@@ -6,7 +6,7 @@ class AdminMiddleware
   def call(env)
     path = env["REQUEST_PATH"]
 
-    if path.starts_with?("/admin/")
+    if path.start_with?("/admin/")
       auth = Rack::Auth::Basic.new(@app) do |u, p|
         u == username && p == password
       end
