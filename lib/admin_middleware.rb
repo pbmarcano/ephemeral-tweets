@@ -4,12 +4,9 @@ class AdminMiddleware
   end
 
   def call(env)
-    request = Rack::Request.new(env)
-    path = request.env["REQUEST_PATH"]
-    # Rails.logger.info path
-    # Rails.logger.info request.env["REQUEST_PATH"]
+    request = ActionDispatch::Request.new(env)
 
-    if path.start_with?("/admin/")
+    if request.path.start_with?("/admin/")
       auth = Rack::Auth::Basic.new(@app) do |u, p|
         u == username && p == password
       end
