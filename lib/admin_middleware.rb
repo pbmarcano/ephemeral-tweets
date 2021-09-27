@@ -4,8 +4,10 @@ class AdminMiddleware
   end
 
   def call(env)
-    Rails.logger.debug env.to_s
-    path = env["REQUEST_PATH"]
+    request = Rack::Request.new(env)
+    path = request.env["REQUEST_PATH"]
+    # Rails.logger.info path
+    # Rails.logger.info request.env["REQUEST_PATH"]
 
     if path.start_with?("/admin/")
       auth = Rack::Auth::Basic.new(@app) do |u, p|
