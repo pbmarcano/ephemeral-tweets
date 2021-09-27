@@ -121,4 +121,8 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.middleware.use Rack::Auth::Basic do |username, password|
+    ENV['STAGING_USER'] == username && ENV['STAGING_PASS'] == password
+  end
 end
