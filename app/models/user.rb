@@ -17,10 +17,9 @@ class User < ApplicationRecord
 
   pay_customer
 
-  has_many :visits, class_name: "Ahoy::Visit"
-
   has_one  :setting, dependent: :destroy
   has_many :tweets, dependent: :destroy
+  has_many :visits, class_name: "Ahoy::Visit"
 
   after_create do
     Setting.create(user: self)
@@ -47,24 +46,20 @@ class User < ApplicationRecord
     return user
   end
 
+  def actively_subscribed?
+    @actively_subscribed ||= payment_processor.subscriptions.active.present?
+  end
+
+  def billing_portal
+    actively_subscribed? ? payment_processor.billing_portal : nil
+  end
+
   def tweets_ready_for_deletion
     tweets.where(published_at: ..threshold_date)
   end
 
   def timeline
     twitter.user_timeline(id: uid)
-  end
-
-  def actively_subscribed?
-    payment_processor.subscriptions.active.present?
-  end
-
-  def billing_portal
-    if actively_subscribed?
-      payment_processor.billing_portal
-    else
-      nil
-    end
   end
 
   private
