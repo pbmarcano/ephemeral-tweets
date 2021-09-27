@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require_relative '../../lib/admin_middleware'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -119,4 +120,5 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.middleware.use AdminMiddleware
 end
