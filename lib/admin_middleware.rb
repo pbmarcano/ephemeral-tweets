@@ -4,6 +4,7 @@ class AdminMiddleware
   end
 
   def call(env)
+    Rails.logger.debug env
     path = env["REQUEST_PATH"]
 
     if path.start_with?("/admin/")
