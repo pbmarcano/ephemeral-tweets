@@ -1,11 +1,11 @@
 <div class="max-w-2xl mx-auto mt-16 sm:mt-24 prose">
   <h1>Billing</h1>
+  <p>
+  You're <%= subscription_status %> &bull; 
   <%= turbo_frame_tag "manage_billing" do %>
-    <p>
-    You're <%= subscription_status %> &bull; 
     <%= link_to @portal_session.url do %>
-      <span class="dark:text-sky-700 underline">Manage Subscription</span>
+      <span>Manage Subscription</span>
     <% end %>
-    </p>
   <% end %>
+  </p>
 </div>

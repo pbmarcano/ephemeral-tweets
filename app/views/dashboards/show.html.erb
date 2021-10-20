@@ -11,10 +11,4 @@
       </ul>
     </div>
   <% end %>
-
-  <% if current_user.actively_subscribed? %>
-    <div class="mt-6 uppercase text-center text-xs dark:text-gray-500">
-      <%= turbo_frame_tag "manage_billing", src: billing_path %>
-    </div>
-  <% end %>
 </main>
