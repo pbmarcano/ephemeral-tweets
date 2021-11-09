@@ -6,7 +6,10 @@ class TweetsController < ApplicationController
 
   def destroy
     DeleteTweetJob.perform_now(@tweet)
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.turbo_stream { head :no_content }
+    end
   end
 
   def fetch
