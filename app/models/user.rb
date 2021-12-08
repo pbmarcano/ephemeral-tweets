@@ -36,6 +36,7 @@ class User < ApplicationRecord
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])
 
     user.update(
+      name: hash.info.name,
       username: hash.info.nickname,
       email: hash.info.email,
       profile_image: hash.info.image,

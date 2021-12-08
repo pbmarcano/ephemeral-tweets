@@ -11,7 +11,7 @@ module TweetHelper
     return link_to(
       tweet.published_at.strftime("%b %d, %Y"), 
       tweet.url, 
-      class: "text-sky-600 dark:text-sky-600 hover:underline",
+      class: "text-sm hover:underline",
       target: "_blank" 
     )
   end
