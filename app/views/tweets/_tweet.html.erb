@@ -1,31 +1,33 @@
-<li id="<%= dom_id(tweet) %>" class="px-6 py-4">
-  <div class="flex space-x-3">
-    <div class="flex-shrink-0 mt-1">
-      <%= image_tag current_user.profile_image, class: "h-10 w-10 rounded-full" %>
-    </div>
-    <div class="w-full">
-      <div class="flex justify-between items-baseline">
-        <div>
-          <span class="font-bold text-gray-900 dark:text-gray-200">
-            <%= current_user&.name %>
-          </span>
-          <a href="https://twitter.com/<%= current_user.username %>" target="_blank" class="text-gray-600 hover:underline dark:text-gray-400">
-            @<%= sanitize current_user.username %>
-          </a>
+<% cache [tweet, tweet.user.setting, Date.today], expires_in: 24.hours.to_i do %>
+  <li id="<%= dom_id(tweet) %>" class="px-6 py-4">
+    <div class="flex space-x-3">
+      <div class="flex-shrink-0 mt-1">
+        <%= image_tag tweet.profile_image, class: "h-10 w-10 rounded-full" %>
+      </div>
+      <div class="w-full">
+        <div class="flex justify-between items-baseline">
+          <div>
+            <span class="font-bold text-gray-900 dark:text-gray-200">
+              <%= tweet.name %>
+            </span>
+            <a href="https://twitter.com/<%= tweet.username %>" target="_blank" class="text-gray-600 hover:underline dark:text-gray-400">
+              @<%= sanitize tweet.username %>
+            </a>
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 font-medium">
+            <%= date_link_to(tweet) %>
+          </div>
         </div>
-        <div class="text-gray-500 dark:text-gray-400 font-medium">
-          <%= date_link_to(tweet) %>
+        <div class="mt-1 text-sm text-gray-700 dark:text-gray-300">
+          <p><%= sanitize tweet.full_text %></p>
+        </div>
+        <div class="mt-4 text-sm space-x-2 flex justify-end">
+          <span class="text-gray-500 dark:text-gray-400 font-medium"><%= delete_countdown(tweet) %></span> 
+          <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
+
+          <button type="button" class="dark:font-medium"><%= delete_now_link(tweet) %></button>
         </div>
       </div>
-      <div class="mt-1 text-sm text-gray-700 dark:text-gray-300">
-        <p><%= sanitize tweet.full_text %></p>
-      </div>
-      <div class="mt-4 text-sm space-x-2 flex justify-end">
-        <span class="text-gray-500 dark:text-gray-400 font-medium"><%= delete_countdown(tweet) %></span> 
-        <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
-        
-        <button type="button" class="dark:font-medium"><%= delete_now_link(tweet) %></button>
-      </div>
     </div>
-  </div>
-</li>
+  </li>
+<% end %>
