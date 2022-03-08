@@ -11,4 +11,11 @@
       </ul>
     </div>
   <% end %>
+
+  <% if Rails.env.development? %>
+    <div class="flex justify-center space-x-4 mt-2">
+      <%= link_to "Fetch tweets", fetch_tweets_path %>
+      <%= link_to "Sweep tweets", sweep_tweets_path %>
+    </div>
+  <% end %>
 </main>

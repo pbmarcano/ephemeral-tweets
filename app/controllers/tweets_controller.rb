@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, except: :fetch
+  before_action :set_tweet, except: [:fetch, :sweep]
   
   def show
   end
@@ -14,7 +14,18 @@ class TweetsController < ApplicationController
 
   def fetch
     FetchTweetsJob.perform_now(current_user)
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.html { redirect_to dashboard_path } 
+      format.turbo_stream { head :no_content }
+    end
+  end
+
+  def sweep
+    QueueTweetDeletionsJob.perform_now(current_user)
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.turbo_stream { head :no_content }
+    end
   end
 
   private

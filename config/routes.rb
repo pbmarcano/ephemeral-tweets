@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:show, :destroy] do
     collection do
       get :fetch
+      get :sweep
     end
   end
   root "homes#show"
