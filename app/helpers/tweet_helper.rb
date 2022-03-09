@@ -29,12 +29,12 @@ module TweetHelper
   def save_tweet(tweet)
     if tweet.saved?
       return link_to "Unsave",
-        unsave_tweet_path(tweet),
+        tweet_saves_path(tweet),
         class: "",
         method: :delete
     else
       return link_to "Save",
-        save_tweet_path(tweet),
+        tweet_saves_path(tweet),
         class: "",
         method: :post
     end

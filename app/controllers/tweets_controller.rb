@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tweet, except: [:fetch, :sweep]
   
   def show
@@ -9,25 +10,6 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to dashboard_path }
       format.turbo_stream { head :no_content }
-    end
-  end
-
-  # members
-  def save
-    @tweet.update(saved_at: DateTime.now)
-
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.turbo_stream
-    end
-  end
-
-  def unsave
-    @tweet.update(saved_at: nil)
-
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.turbo_stream
     end
   end
 
