@@ -5,8 +5,8 @@ class CheckoutsController < ApplicationController
     @checkout_session = current_user.payment_processor.checkout(
       mode: "subscription",
       line_items: Rails.application.credentials.dig(:stripe, :standard_product),
-      success_url: dashboard_url,
-      cancel_url: dashboard_url
+      success_url: tweets_url,
+      cancel_url: tweets_url
     )
   end
 end

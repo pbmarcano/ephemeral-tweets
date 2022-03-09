@@ -6,7 +6,7 @@ class SavesController < ApplicationController
     @tweet.update(saved_at: DateTime.now)
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path }
+      format.html { redirect_to tweets_path }
       format.turbo_stream
     end
   end
@@ -15,7 +15,7 @@ class SavesController < ApplicationController
     @tweet.update(saved_at: nil)
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path }
+      format.html { redirect_to tweets_path }
       format.turbo_stream
     end
   end
