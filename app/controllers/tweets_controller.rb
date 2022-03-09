@@ -12,19 +12,43 @@ class TweetsController < ApplicationController
     end
   end
 
-  def fetch
-    FetchTweetsJob.perform_now(current_user)
+  # members
+  def save
+    @tweet.update(saved_at: DateTime.now)
+
     respond_to do |format|
-      format.html { redirect_to dashboard_path } 
-      format.turbo_stream { head :no_content }
+      format.html { redirect_to dashboard_path }
+      format.turbo_stream
+    end
+  end
+
+  def unsave
+    @tweet.update(saved_at: nil)
+
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.turbo_stream
+    end
+  end
+
+  # collection for dev
+  def fetch
+    if Rails.env.development?
+      FetchTweetsJob.perform_now(current_user)
+      respond_to do |format|
+        format.html { redirect_to dashboard_path } 
+        format.turbo_stream { head :no_content }
+      end
     end
   end
 
   def sweep
-    QueueTweetDeletionsJob.perform_now(current_user)
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.turbo_stream { head :no_content }
+    if Rails.env.development?
+      QueueTweetDeletionsJob.perform_now(current_user)
+      respond_to do |format|
+        format.html { redirect_to dashboard_path }
+        format.turbo_stream { head :no_content }
+      end
     end
   end
 

@@ -56,7 +56,7 @@ class User < ApplicationRecord
   end
 
   def tweets_ready_for_deletion
-    tweets.where(published_at: ..threshold_date)
+    tweets.not_saved.where(published_at: ..threshold_date)
   end
 
   def timeline

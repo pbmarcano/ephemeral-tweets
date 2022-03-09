@@ -17,13 +17,27 @@ module TweetHelper
   end
 
   def delete_now_link(tweet)
-    return link_to "delete now", 
+    return link_to delete_countdown(tweet), 
       tweet_path(tweet), 
       class: "text-red-500 hover:underline",
       method: :delete, 
       data: { 
-        confirm: "Are you sure? You will be deleting this tweet off twitter forever" 
+        confirm: "Want to delete this tweet now? This is irreversible." 
       } 
+  end
+
+  def save_tweet(tweet)
+    if tweet.saved?
+      return link_to "Unsave",
+        unsave_tweet_path(tweet),
+        class: "",
+        method: :delete
+    else
+      return link_to "Save",
+        save_tweet_path(tweet),
+        class: "",
+        method: :post
+    end
   end
 
   private

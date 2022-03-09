@@ -1,5 +1,5 @@
 <% cache [tweet, tweet.user.setting, Date.today], expires_in: 24.hours.to_i do %>
-  <li id="<%= dom_id(tweet) %>" class="px-6 py-4">
+  <li id="<%= dom_id tweet %>" class="px-6 py-4">
     <div class="flex space-x-3">
       <div class="flex-shrink-0 mt-1">
         <%= image_tag tweet.profile_image, class: "h-10 w-10 rounded-full" %>
@@ -22,10 +22,11 @@
           <p><%= sanitize tweet.full_text %></p>
         </div>
         <div class="mt-4 text-sm space-x-2 flex justify-end">
-          <span class="text-gray-500 dark:text-gray-400 font-medium"><%= delete_countdown(tweet) %></span> 
-          <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
-
           <button type="button" class="dark:font-medium"><%= delete_now_link(tweet) %></button>
+          <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
+          <span class="text-gray-500 dark:text-gray-400 font-medium">
+            <%= save_tweet(tweet) %>
+          </span> 
         </div>
       </div>
     </div>

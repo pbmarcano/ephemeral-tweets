@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   resource :session, only: :destroy
   resources :settings, only: :update
   resources :tweets, only: [:show, :destroy] do
+    member do
+      post :save
+      delete :unsave
+    end
     collection do
       get :fetch
       get :sweep

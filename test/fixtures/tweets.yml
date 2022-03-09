@@ -4,8 +4,11 @@ one:
   tweet_id: 28391
   published_at: 2021-08-02 15:29:27
   user: one
+  full_text: "this is a tweet"
 
 two:
   tweet_id: 4893883
   published_at: 2021-08-02 15:29:27
-  user: two
+  user: one
+  saved_at: 2021-08-02 16:29:27
+  full_text: "this is another tweet"
