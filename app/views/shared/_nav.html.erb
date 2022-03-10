@@ -6,7 +6,7 @@
     <% end %>
   </div>
   <% if current_user.present? %>
-    <div id="nav-dropdown" class="flex items-center justify-end" data-turbo-permanent>
+    <div id="nav-dropdown" class="flex items-center justify-end">
       <div class="flex-shrink-0 relative ml-5" 
            data-controller="dropdown"
            data-dropdown-entering-class="ease-out duration-100"
@@ -17,7 +17,7 @@
            data-dropdown-leaving-timeout="75">
         <button type="button" class="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true" data-action="click->dropdown#toggle click@window->dropdown#hide touch->dropdown#toggle touch@window->dropdown#hide">
           <span class="sr-only">Open user menu</span>
-          <%= image_tag current_user.profile_image, class: "h-10 w-10 rounded-full" %>
+          <%= image_tag current_user.profile_image, class: "h-10 w-10 rounded-full shadow" %>
         </button>
 
         <div class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 py-1 focus:ring-1 ring-gray-500 focus:outline-none hidden transform transition opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
@@ -27,7 +27,7 @@
           </div>
           <% if current_user.actively_subscribed? %>
             <div class="block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800">
-              <%= turbo_frame_tag "manage_billing", src: billing_path %>
+              <%= link_to "Manage Subscription", billing_path %>
             </div>
           <% end %>
           <!-- Active: "bg-gray-100", Not Active: "" -->

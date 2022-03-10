@@ -1,11 +1,6 @@
-<div class="max-w-2xl mx-auto mt-16 sm:mt-24 prose">
-  <h1>Billing</h1>
-  <p>
-  You're <%= subscription_status %> &bull; 
-  <%= turbo_frame_tag "manage_billing" do %>
-    <%= link_to @portal_session.url do %>
-      <span>Manage Subscription</span>
-    <% end %>
-  <% end %>
+<div class="max-w-2xl mx-auto mt-16 sm:mt-24">
+  <h1 class="text-gray-800 dark:text-gray-300 font-extrabold text-4xl mb-5">Billing</h1>
+  <p class="text-gray-700 dark:text-gray-400">
+  You're <%= subscription_status %> &bull; <%= link_to "Manage Subscription", @portal_session.url, class: "underline" %>
   </p>
 </div>
