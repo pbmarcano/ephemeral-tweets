@@ -1,3 +1,15 @@
+<% if current_user.has_tweets_saved? %>
+  <%= turbo_stream.replace "timeline_tabs" do %>
+    <%= turbo_frame_tag "timeline_tabs" do %>
+      <%= render "tweets/tabs" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "timeline_tabs" do %>
+    <%= turbo_frame_tag "timeline_tabs" %>
+  <% end %>
+<% end %>
+
 <%= turbo_stream.replace @tweet do %>
   <%= render @tweet, partial: "tweets/tweet" %>
 <% end %>

@@ -30,12 +30,12 @@ module TweetHelper
     if tweet.saved?
       return link_to "Unsave",
         tweet_saves_path(tweet),
-        class: "",
+        class: "hover:underline",
         method: :delete
     else
       return link_to "Save",
         tweet_saves_path(tweet),
-        class: "",
+        class: "hover:underline",
         method: :post
     end
   end

@@ -63,6 +63,10 @@ class User < ApplicationRecord
     twitter.user_timeline(id: uid)
   end
 
+  def has_tweets_saved?
+    tweets.saved.present?
+  end
+
   private
 
   def threshold_date

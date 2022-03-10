@@ -22,8 +22,10 @@
           <p><%= sanitize tweet.full_text %></p>
         </div>
         <div class="mt-4 text-sm space-x-2 flex justify-end">
-          <button type="button" class="dark:font-medium"><%= delete_now_link(tweet) %></button>
-          <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
+          <% unless tweet.saved? %>
+            <button type="button" class="dark:font-medium"><%= delete_now_link(tweet) %></button>
+            <span class="text-gray-500 dark:text-gray-400 font-medium">&middot;</span>
+          <% end %>
           <span class="text-gray-500 dark:text-gray-400 font-medium">
             <%= save_tweet(tweet) %>
           </span> 
