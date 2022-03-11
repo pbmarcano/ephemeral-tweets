@@ -1,10 +1,14 @@
-<%= turbo_frame_tag "timeline", data: { turbo_action: "advance" } do %>
+<%= turbo_frame_tag "timeline" do %>
   <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
     <%= render "tabs" %>
 
     <%= turbo_stream_from current_user, :tweets %>
     <ul role="list" id="tweets" class="divide-y divide-gray-200 dark:divide-gray-800">
-      <%= render tweets %>
+      <% if tweets.present? %>
+        <%= render tweets %>
+      <% else %>
+        <li class="py-6 flex justify-center text-xl font-semibold text-gray-600">No tweets here, yet...</li>
+      <% end %>
     </ul>
   </div>
 <% end %>
