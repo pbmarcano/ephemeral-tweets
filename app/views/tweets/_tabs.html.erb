@@ -1,32 +1,25 @@
 <div class="sm:mb-3">
-  <div class="sm:hidden">
-    <label for="tabs" class="sr-only">Select a tab</label>
-    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-    <select id="tabs" name="tabs" class="block w-full focus:ring-sky-500 focus:border-sky-500 border-gray-300 rounded-md">
-      <option selected>To be deleted</option>
-      <option>Saved</option>
-    </select>
-  </div>
-  <div class="hidden sm:block">
-    <div class="border-b border-gray-200 dark:border-gray-800">
-      <nav class="pr-6 -mb-px flex justify-center space-x-8" aria-label="Tabs">
-        <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-        <a href="#" class="border-gray-400 dark:border-gray-400 text-gray-700 dark:text-gray-300 group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
-          <!-- Heroicon name: solid/users -->
-          <svg class="text-gray-500 dark:text-gray-400 -ml-0.5 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-          </svg>
-          <span>To Be Deleted</span>
-        </a>
+  <div class="border-b border-gray-200 dark:border-gray-800">
+    <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+      <%= nav_link_to tweets_path, 
+        class: "group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm", 
+        active_class: "border-gray-400 dark:border-gray-400 text-gray-700 dark:text-gray-300", 
+        inactive_class: "border-transparent dark:border-gray-800  hover:border-gray-300 dark:hover:border-gray-400 text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-400" do %>
+        <svg class="fill-current -ml-0.5 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+        <span>To Be Deleted</span>
+      <% end %>
 
-        <a href="#" class="border-transparent dark:border-gray-800 dark:hover:border-gray-400 text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 hover:text-gray-700 hover:border-gray-300 group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm">
-          <!-- Heroicon name: solid/credit-card -->
-          <svg class="text-gray-400 dark:text-gray-500 dark:group-hover:text-gray-400 group-hover:text-gray-500 -ml-0.5 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
-          </svg>
-          <span>Saved Tweets</span>
-        </a>
-      </nav>
-    </div>
+      <%= nav_link_to saved_tweets_path, 
+        class: "group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm", 
+        active_class: "border-gray-400 dark:border-gray-400 text-gray-700 dark:text-gray-300", 
+        inactive_class: "border-transparent dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-400 text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-400" do %>
+        <svg class="fill-current -ml-0.5 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+        </svg>
+        <span>Saved Tweets</span>
+      <% end %>
+    </nav>
   </div>
 </div>

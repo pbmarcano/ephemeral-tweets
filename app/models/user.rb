@@ -67,6 +67,14 @@ class User < ApplicationRecord
     tweets.saved.present?
   end
 
+  def unsaved_tweets
+    tweets.not_saved
+  end
+
+  def saved_tweets
+    tweets.saved
+  end
+
   private
 
   def threshold_date

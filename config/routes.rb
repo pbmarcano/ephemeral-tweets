@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :admin do
     mount Blazer::Engine, at: "/blazer"
     mount Sidekiq::Web, at: '/sidekiq'
-    mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development? || Rails.env.staging?
+    if Rails.env.development? || Rails.env.staging?
+      mount LetterOpenerWeb::Engine, at: '/letter_opener'
+    end
   end
 
   # app routes
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:index, :show, :destroy] do
     resource :saves, only: [:create, :destroy]
     collection do
+      get :saved
       get :fetch
       get :sweep
     end

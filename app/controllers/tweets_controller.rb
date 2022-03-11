@@ -1,9 +1,9 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tweet, except: [:index, :fetch, :sweep]
+  before_action :set_tweet, only: [:show, :destroy]
 
   def index
-    @tweets = current_user.tweets.oldest_first
+    @tweets = current_user.unsaved_tweets.oldest_first
     ahoy.track "visted dashboard", { user: current_user }
   end
   
@@ -16,6 +16,10 @@ class TweetsController < ApplicationController
       format.html { redirect_to tweets_path }
       format.turbo_stream { head :no_content }
     end
+  end
+
+  def saved
+    @tweets = current_user.saved_tweets.oldest_first
   end
 
   # collection for dev

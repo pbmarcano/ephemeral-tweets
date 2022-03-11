@@ -1,9 +1,9 @@
 module TweetHelper
   def delete_countdown(tweet)
-    if sweeping?(tweet)
-      return "deletes in #{delete_timeline(tweet)}"
-    else
+    if safe_from_deletion?(tweet)
       return "would delete in #{delete_timeline(tweet)}"
+    else
+      return "deletes in #{delete_timeline(tweet)}"
     end
   end
 
@@ -50,6 +50,10 @@ module TweetHelper
     else
       return distance_of_time_in_words(tweet.published_at, delete_at)
     end
+  end
+
+  def safe_from_deletion?(tweet)
+    tweet.saved? || !sweeping?(tweet)
   end
 
   def threshold(tweet)
