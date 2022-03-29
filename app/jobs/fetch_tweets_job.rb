@@ -20,6 +20,9 @@ class FetchTweetsJob < ApplicationJob
     t.assign_attributes(
       published_at: tweet.created_at.to_datetime,
       full_text: tweet.full_text,
+      reply_count:  tweet.reply_count? ? tweet.reply_count : 0,
+      retweet_count: tweet.retweet_count? ? tweet.retweet_count : 0,
+      favorite_count: tweet.favorite_count? ? tweet.favorite_count : 0,
       url: tweet.url.to_s
     )
 
