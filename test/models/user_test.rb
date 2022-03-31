@@ -3,12 +3,16 @@
 # Table name: users
 #
 #  id            :bigint           not null, primary key
+#  email         :string           default(""), not null
+#  first_name    :string
+#  last_name     :string
+#  name          :string
+#  profile_image :string
 #  provider      :string
+#  secret        :string
+#  token         :string
 #  uid           :string
 #  username      :string
-#  token         :string
-#  secret        :string
-#  profile_image :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
