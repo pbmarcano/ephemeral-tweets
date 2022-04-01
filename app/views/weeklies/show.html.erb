@@ -1,0 +1,56 @@
+<% content_for :title, "Upcoming week for #{current_user.username}" %>
+
+<main class="max-w-2xl mx-auto">
+  <h1 class="mt-24 font-extrabold text-3xl text-gray-900 dark:text-gray-300 sm:text-4xl text-center">Upcoming week</h1>
+  <div class="flex justify-center items-center my-4 text-xl text-gray-500 dark:text-gray-400">
+    <form class="flex items-center space-x-2">
+      <input type="checkbox" id="send_review" class="h-4 w-4 rounded text-sky-500 dark:bg-gray-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700">
+      <label>Email me a weekly review every</label>
+      <select name="day_of_week" id="day_of_week" class="mt-1 block pl-3 pr-10 py-2 text-base dark:bg-gray-700 border-gray-300 dark:border-gray-500 font-bold focus:outline-none focus:ring-sky-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        <option value="1">Sunday</option>
+        <option value="2">Monday</option>
+        <option value="3">Tuesday</option>
+        <option value="4">Wednesday</option>
+        <option value="5">Thursday</option>
+        <option value="6">Friday</option>
+        <option value="7">Saturday</option>
+      </select>
+    </form>
+  </div>
+
+  <% if @weekly_review.tweets_deleting_tomorrow? %>
+    <div class="text-xl font-bold text-gray-600 dark:text-gray-400 tracking-wide m-2">
+      Tomorrow
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
+      <ul role="list" id="tweets" class="divide-y divide-gray-200 dark:divide-gray-800">
+        <% @weekly_review.tomorrows_tweets.each do |tweet| %>
+          <%= render tweet %>
+        <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+
+  <% if @weekly_review.remaining_tweets? %>
+
+    <% @weekly_review.remaining_tweets.each do |daily_tweets| %>
+
+      <div class="text-xl font-bold text-gray-600 dark:text-gray-400 tracking-wide m-2 mt-6">
+        <%= Date::DAYNAMES[daily_tweets.first.wday] %>
+      </div>
+
+      <%# Daily Timeline %>
+      <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
+        <ul role="list" id="tweets" class="divide-y divide-gray-200 dark:divide-gray-800">
+          <% daily_tweets.last.each do |tweets| %>
+            <%= render tweets %>
+          <% end %>
+        </ul>
+      </div>
+
+    <% end %>
+  <% end %>
+
+</main>
