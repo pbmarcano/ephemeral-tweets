@@ -52,10 +52,9 @@
     <% @weekly_review.remaining_tweets.each do |daily_tweets| %>
 
       <div class="text-xl font-bold text-gray-600 dark:text-gray-400 tracking-wide m-2 mt-6">
-        <%= Date::DAYNAMES[daily_tweets.first.wday] %>, <%= Date::MONTHNAMES[daily_tweets.first.month] %> <%= daily_tweets.first.mday %><sup><%= daily_tweets.first.mday.ordinal %>
+        <%= (daily_tweets.first + 1.year).strftime("%A, %B %e") %><sup><%= daily_tweets.first.mday.ordinal %></sup>
       </div>
 
-      <%# Daily Timeline %>
       <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
         <ul role="list" id="tweets" class="divide-y divide-gray-200 dark:divide-gray-800">
           <% daily_tweets.last.each do |tweets| %>
