@@ -25,6 +25,6 @@ Rails.application.routes.draw do
       get :sweep
     end
   end
-  resource :weekly, only: :show
+  resource :upcoming, only: :show
   root "homes#show"
 end

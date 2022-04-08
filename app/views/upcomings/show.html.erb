@@ -18,7 +18,7 @@
   <%#   </form> %>
   <%# </div> %>
 
-  <% if @weekly_review.tweets_this_week.empty? %>
+  <% if @upcoming_review.tweets_this_week.empty? %>
     <div class="flex flex-col items-center">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="h-64 w-64 fill-gray-600 heroicon-diamond heroicon heroicons-lg">
         <polygon class="heroicon-diamond-shape heroicon-component-fill fill-sky-400" fill="#FFFFFF" points="20 17 50 13 80 17 100 37 50 87 0 37"></polygon>
@@ -32,14 +32,14 @@
     </div>
   <% end %>
 
-  <% if @weekly_review.tweets_deleting_tomorrow? %>
+  <% if @upcoming_review.tweets_deleting_tomorrow? %>
     <div class="text-xl font-bold text-gray-600 dark:text-gray-400 tracking-wide m-2">
       Tomorrow
     </div>
 
     <div class="bg-white dark:bg-gray-700 dark:text-gray-300 shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden rounded-lg">
       <ul role="list" id="tweets" class="divide-y divide-gray-200 dark:divide-gray-800">
-        <% @weekly_review.tomorrows_tweets.each do |tweet| %>
+        <% @upcoming_review.tomorrows_tweets.each do |tweet| %>
           <%= render tweet %>
         <% end %>
       </ul>
@@ -47,9 +47,9 @@
 
   <% end %>
 
-  <% if @weekly_review.remaining_tweets? %>
+  <% if @upcoming_review.remaining_tweets? %>
 
-    <% @weekly_review.remaining_tweets.each do |daily_tweets| %>
+    <% @upcoming_review.remaining_tweets.each do |daily_tweets| %>
 
       <div class="text-xl font-bold text-gray-600 dark:text-gray-400 tracking-wide m-2 mt-6">
         <%= (daily_tweets.first + 1.year).strftime("%A, %B %e") %><sup><%= daily_tweets.first.mday.ordinal %></sup>

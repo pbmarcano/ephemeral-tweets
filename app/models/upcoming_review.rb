@@ -1,4 +1,4 @@
-class WeeklyReview
+class UpcomingReview
   attr_reader :user
 
   def initialize(user)
@@ -22,7 +22,6 @@ class WeeklyReview
   def remaining_tweets
     grouped_tweets_this_week[false].group_by{ |t| t.published_at.to_date }
   end
-
 
   # group this weeks tweets by everything getting deleted tomorrow, and
   # each day after.
