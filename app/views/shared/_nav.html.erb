@@ -1,10 +1,11 @@
 <header class="max-w-2xl my-2 px-2 md:px-0 mx-auto flex justify-between">
-  <div class="flex items-center font-bold dark:text-gray-300">
+  <div class="flex items-baseline font-bold dark:text-gray-300">
     <%= link_to root_path do %>
       <span class="text-2xl">🧹</span>
       <span class="text-sky-600 dark:text-sky-500">Tweet</span> Sweeper
     <% end %>
   </div>
+
   <% if current_user.present? %>
     <div id="nav-dropdown" class="flex items-center justify-end">
       <div class="flex-shrink-0 relative ml-5" 
@@ -26,17 +27,11 @@
             <div class="text-base font-medium text-gray-800 dark:text-gray-300">@<%= current_user.username %></div>
           </div>
           <% if current_user.actively_subscribed? %>
-            <div class="block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800">
-              <%= link_to "Manage Subscription", billing_path %>
-            </div>
+            <%= link_to "Manage Subscription", billing_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
           <% end %>
           <% if Rails.env.development? %>
-            <div class="block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800">
-              <%= link_to "Fetch tweets", fetch_tweets_path %>
-            </div>
-            <div class="block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800">
-              <%= link_to "Sweep tweets", sweep_tweets_path %>
-            </div>
+            <%= link_to "Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
+            <%= link_to "Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
           <% end %>
           <!-- Active: "bg-gray-100", Not Active: "" -->
           <%= link_to "Sign out", session_path, method: :delete, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400", role: "menuitem", tabindex: "-1" %>
