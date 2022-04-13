@@ -32,6 +32,7 @@ class User < ApplicationRecord
   end
 
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
+  scope :recieves_upcoming_notification, -> { joins(:setting).where(setting: { upcoming_notification: true }) }
 
   delegate :time_threshold, to: :setting
   delegate :sweeping?, to: :setting

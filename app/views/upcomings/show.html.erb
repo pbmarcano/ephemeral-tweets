@@ -2,21 +2,27 @@
 
 <main class="max-w-2xl mx-auto">
   <h1 class="mb-10 font-extrabold text-3xl text-gray-900 dark:text-gray-300 sm:text-4xl text-center">Upcoming week</h1>
-  <%# <div class="flex justify-center items-center my-4 text-xl text-gray-500 dark:text-gray-400"> %>
-  <%#   <form class="flex items-center space-x-2"> %>
-  <%#     <input type="checkbox" id="send_review" class="h-4 w-4 rounded text-sky-500 dark:bg-gray-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700"> %>
-  <%#     <label>Email me a weekly review every</label> %>
-  <%#     <select name="day_of_week" id="day_of_week" class="mt-1 block pl-3 pr-10 py-2 text-base dark:bg-gray-700 border-gray-300 dark:border-gray-500 font-bold focus:outline-none focus:ring-sky-500 focus:border-indigo-500 sm:text-sm rounded-md"> %>
-  <%#       <option value="1">Sunday</option> %>
-  <%#       <option value="2">Monday</option> %>
-  <%#       <option value="3">Tuesday</option> %>
-  <%#       <option value="4">Wednesday</option> %>
-  <%#       <option value="5">Thursday</option> %>
-  <%#       <option value="6">Friday</option> %>
-  <%#       <option value="7">Saturday</option> %>
-  <%#     </select> %>
-  <%#   </form> %>
-  <%# </div> %>
+  <div class="flex justify-center my-4 text-xl text-gray-500 dark:text-gray-400">
+    <%= form_with(
+      model: current_user.setting, 
+      url: upcoming_setting_path,
+      data: {
+        controller: "autosubmit",
+        autosubmit_target: "form"
+      }) do |form| %>
+
+      <div class="flex items-center space-x-2">
+        <%= form.check_box :upcoming_notification,
+          class: "h-4 w-4 rounded text-sky-500 dark:bg-gray-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
+          data: { action: "autosubmit#submit" } %>
+        <%= form.label :upcoming_notification, "Email me a weekly review every Sunday" %>
+      </div>
+
+      <div class="text-center mt-4" data-autosubmit-target="submit">
+        <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-gray-200 shadow-md" %>
+      </div>
+    <% end %>
+  </div>
 
   <% if @upcoming_review.tweets_this_week.empty? %>
     <div class="flex flex-col items-center">

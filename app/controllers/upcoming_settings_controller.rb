@@ -1,12 +1,12 @@
-class SettingsController < ApplicationController
+class UpcomingSettingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_settings
 
   def update
     if @settings.update(setting_params)
-      redirect_to tweets_path, notice: "Success"
+      redirect_to upcoming_path, notice: "Success"
     else
-      redirect_to tweets_path, notice: "Fail"
+      redirect_to upcoming_path, notice: "Fail"
     end
   end
 
@@ -17,6 +17,6 @@ class SettingsController < ApplicationController
   end
 
   def setting_params
-    params.require(:setting).permit(:sweeping, :time_threshold)
+    params.require(:setting).permit(:upcoming_notification)
   end
 end
