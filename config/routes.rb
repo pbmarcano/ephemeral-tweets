@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   end
   resource :upcoming, only: :show
   resource :upcoming_setting, only: :update
+
   root "homes#show"
 end
