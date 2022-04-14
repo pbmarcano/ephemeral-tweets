@@ -5,7 +5,7 @@
 #  id                    :bigint           not null, primary key
 #  sweeping              :boolean          default(FALSE)
 #  time_threshold        :integer          default(365)
-#  upcoming_notification :boolean          default(FALSE)
+#  upcoming_notification :boolean          default(TRUE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  user_id               :bigint           not null
