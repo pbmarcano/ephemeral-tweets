@@ -8,7 +8,10 @@ class UpcomingMailer < ApplicationMailer
   def notify(user)
     @user = user
     @upcoming_review = UpcomingReview.new(user)
+    tweet_count = @upcoming_review.tweets_this_week.count
 
-    mail to: @user.email, subject: "#{@upcoming_review.tweets_this_week.count} tweets getting deleted this week"
+    if tweet_count > 0
+      mail to: @user.email, subject: default_i18n_subject(count: tweet_count)
+    end
   end
 end

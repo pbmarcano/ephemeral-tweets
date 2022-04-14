@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  upcoming_mailer:
+    notify:
+      subject: "%{count} tweets will be deleted this week"
