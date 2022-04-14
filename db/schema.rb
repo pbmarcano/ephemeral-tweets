@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.integer "time_threshold", default: 365
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "upcoming_notification", default: false
+    t.boolean "upcoming_notification", default: true
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
