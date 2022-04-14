@@ -18,7 +18,6 @@
 #
 class User < ApplicationRecord
   include TwitterClient
-
   pay_customer
 
   has_one  :setting, dependent: :destroy
@@ -32,7 +31,7 @@ class User < ApplicationRecord
   end
 
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
-  scope :recieves_upcoming_notification, -> { joins(:setting).where(setting: { upcoming_notification: true }) }
+  scope :receive_upcoming_notifications, -> { joins(:setting).where(setting: { upcoming_notification: true }) }
 
   delegate :time_threshold, to: :setting
   delegate :sweeping?, to: :setting
@@ -58,31 +57,5 @@ class User < ApplicationRecord
 
   def billing_portal
     actively_subscribed? ? payment_processor.billing_portal : nil
-  end
-
-  def tweets_ready_for_deletion
-    tweets.not_saved.where(published_at: ..threshold_date)
-  end
-
-  def timeline
-    twitter.user_timeline(id: uid)
-  end
-
-  def has_tweets_saved?
-    tweets.saved.present?
-  end
-
-  def unsaved_tweets
-    tweets.not_saved
-  end
-
-  def saved_tweets
-    tweets.saved
-  end
-
-  private
-
-  def threshold_date
-    Time.now.utc - time_threshold.days
   end
 end

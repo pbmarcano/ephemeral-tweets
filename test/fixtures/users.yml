@@ -28,7 +28,7 @@ one:
 two:
   provider: Twitter
   uid: 87547438348792
-  username: pbmarcano
+  username: SweepYourTweets
   token: MyString
   secret: MyString
   profile_image: MyString

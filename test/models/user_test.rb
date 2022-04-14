@@ -19,10 +19,22 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+  setup do
+    @user1 = users(:one)
+    @user2 = users(:two)
+  end
+
   test "scoped users who've enabled sweeping" do
     active_users = User.enabled_sweeping
-    user2 = users(:two)
 
-    assert active_users.exclude?(user2)
+    assert active_users.include?(@user1)
+    assert active_users.exclude?(@user2)
+  end
+
+  test "scoped users who've enabled upcoming emails" do
+    notified_users = User.receive_upcoming_notifications
+
+    assert notified_users.include?(@user1)
+    assert notified_users.exclude?(@user2)
   end
 end
