@@ -72,3 +72,5 @@ gem "sidekiq", "~> 6.2"
 gem "stripe", ">= 2.8", "< 6.0"
 gem "twitter", "~> 7.0"
 gem "whenever", "~> 1.0"
+
+gem "importmap-rails", "~> 1.0"
