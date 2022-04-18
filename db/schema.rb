@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_12_213635) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_12_213635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.bigint "user_id"
     t.string "name"
     t.jsonb "properties"
-    t.datetime "time"
+    t.datetime "time", precision: nil
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
@@ -52,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
-    t.datetime "started_at"
+    t.datetime "started_at", precision: nil
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
@@ -62,7 +61,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.bigint "query_id"
     t.text "statement"
     t.string "data_source"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["query_id"], name: "index_blazer_audits_on_query_id"
     t.index ["user_id"], name: "index_blazer_audits_on_user_id"
   end
@@ -76,9 +75,9 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.text "slack_channels"
     t.string "check_type"
     t.text "message"
-    t.datetime "last_run_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_run_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
     t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
@@ -87,8 +86,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.bigint "dashboard_id"
     t.bigint "query_id"
     t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
     t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
   end
@@ -96,8 +95,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
   create_table "blazer_dashboards", force: :cascade do |t|
     t.bigint "creator_id"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_dashboards_on_creator_id"
   end
 
@@ -108,8 +107,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.text "statement"
     t.string "data_source"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
@@ -123,8 +122,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.integer "amount_refunded"
     t.jsonb "metadata"
     t.jsonb "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["customer_id", "processor_id"], name: "index_pay_charges_on_customer_id_and_processor_id", unique: true
     t.index ["subscription_id"], name: "index_pay_charges_on_subscription_id"
   end
@@ -136,9 +135,9 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "processor_id"
     t.boolean "default"
     t.jsonb "data"
-    t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_type", "owner_id", "deleted_at", "default"], name: "pay_customer_owner_index"
     t.index ["processor", "processor_id"], name: "index_pay_customers_on_processor_and_processor_id", unique: true
   end
@@ -150,8 +149,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "processor_id"
     t.boolean "default"
     t.jsonb "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_type", "owner_id", "processor"], name: "index_pay_merchants_on_owner_type_and_owner_id_and_processor"
   end
 
@@ -161,8 +160,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.boolean "default"
     t.string "type"
     t.jsonb "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["customer_id", "processor_id"], name: "index_pay_payment_methods_on_customer_id_and_processor_id", unique: true
   end
 
@@ -173,13 +172,13 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "processor_plan", null: false
     t.integer "quantity", default: 1, null: false
     t.string "status", null: false
-    t.datetime "trial_ends_at"
-    t.datetime "ends_at"
+    t.datetime "trial_ends_at", precision: nil
+    t.datetime "ends_at", precision: nil
     t.decimal "application_fee_percent", precision: 8, scale: 2
     t.jsonb "metadata"
     t.jsonb "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["customer_id", "processor_id"], name: "index_pay_subscriptions_on_customer_id_and_processor_id", unique: true
   end
 
@@ -187,29 +186,29 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "processor"
     t.string "event_type"
     t.jsonb "event"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.boolean "sweeping", default: false
     t.integer "time_threshold", default: 365
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "upcoming_notification", default: true
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
     t.bigint "tweet_id", null: false
-    t.datetime "published_at", null: false
+    t.datetime "published_at", precision: nil, null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "full_text"
     t.string "url"
-    t.datetime "saved_at"
+    t.datetime "saved_at", precision: nil
     t.integer "reply_count", default: 0
     t.integer "retweet_count", default: 0
     t.integer "favorite_count", default: 0
@@ -224,8 +223,8 @@ ActiveRecord::Schema.define(version: 2022_04_12_213635) do
     t.string "token"
     t.string "secret"
     t.string "profile_image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
     t.string "first_name"
     t.string "last_name"
