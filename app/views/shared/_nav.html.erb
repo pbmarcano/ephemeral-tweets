@@ -1,5 +1,5 @@
 <header class="max-w-2xl my-2 px-2 md:px-0 mx-auto flex justify-between">
-  <div class="flex items-baseline font-bold dark:text-gray-300">
+  <div class="flex items-baseline font-bold dark:text-slate-300">
     <%= link_to root_path do %>
       <span class="text-2xl">🧹</span>
       <span class="text-sky-600 dark:text-sky-500">Tweet</span> Sweeper
@@ -21,20 +21,20 @@
           <%= image_tag current_user.profile_image, class: "h-10 w-10 rounded-full shadow" %>
         </button>
 
-        <div class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 py-1 focus:ring-1 ring-gray-500 focus:outline-none hidden transform transition opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
-          <div class="px-4 py-2 border-b dark:border-gray-800">
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Signed in as</div>
-            <div class="text-base font-medium text-gray-800 dark:text-gray-300">@<%= current_user.username %></div>
+        <div class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-slate-700 py-1 focus:ring-1 ring-slate-500 focus:outline-none hidden transform transition opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
+          <div class="px-4 py-2 border-b dark:border-slate-800">
+            <div class="text-sm font-medium text-slate-500 dark:text-slate-400">Signed in as</div>
+            <div class="text-base font-medium text-slate-800 dark:text-slate-300">@<%= current_user.username %></div>
           </div>
           <% if current_user.actively_subscribed? %>
-            <%= link_to "Manage Subscription", billing_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
+            <%= link_to "Manage Subscription", billing_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
           <% end %>
           <% if Rails.env.development? %>
-            <%= link_to "Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
-            <%= link_to "Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400 border-b dark:border-gray-800" %>
+            <%= link_to "Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
+            <%= link_to "Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
           <% end %>
-          <!-- Active: "bg-gray-100", Not Active: "" -->
-          <%= link_to "Sign out", session_path, method: :delete, class: "block py-2 px-4 text-sm dark:hover:bg-gray-600 hover:bg-gray-100 text-gray-700 dark:text-gray-400", role: "menuitem", tabindex: "-1" %>
+          <!-- Active: "bg-slate-100", Not Active: "" -->
+          <%= link_to "Sign out", session_path, method: :delete, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400", role: "menuitem", tabindex: "-1" %>
         </div>
       </div>
     </div>
