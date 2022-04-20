@@ -38,10 +38,6 @@ class Tweet < ApplicationRecord
     broadcast_prepend_later_to user, :tweets, target: "tweets"
   end
 
-  after_destroy_commit do
-    broadcast_remove_to user, :tweets
-  end
-
   def saved?
     saved_at.present?
   end
