@@ -39,43 +39,20 @@
   <% end %>
 
   <div class="flex flex-col space-y-4">
-    <% if @upcoming_review.tweets_deleting_tomorrow? %>
+    <% @upcoming_review.grouped_tweets_this_week.each do |daily_tweets| %>
       <div>
-        <div class="text-xl font-bold text-slate-600 dark:text-slate-400 tracking-wide m-2">
-          Tomorrow
+        <div class="text-xl font-bold text-slate-600 dark:text-slate-400 tracking-wide m-2 mt-6">
+          <%= deletion_day(daily_tweets.first) %>
         </div>
 
         <div class="bg-white dark:bg-slate-700 dark:text-slate-300 shadow-lg border border-slate-100 dark:border-slate-800 overflow-hidden rounded-lg">
           <ul role="list" id="tweets" class="divide-y divide-slate-200 dark:divide-slate-800">
-            <% @upcoming_review.tomorrows_tweets.each do |tweet| %>
-              <%= render tweet %>
+            <% daily_tweets.last.each do |tweets| %>
+              <%= render tweets %>
             <% end %>
           </ul>
         </div>
-
       </div>
     <% end %>
-
-    <% if @upcoming_review.remaining_tweets? %>
-
-      <% @upcoming_review.remaining_tweets.each do |daily_tweets| %>
-        <div>
-
-          <div class="text-xl font-bold text-slate-600 dark:text-slate-400 tracking-wide m-2 mt-6">
-            <%= (daily_tweets.first + 1.year).strftime("%A, %B %e") %><sup><%= daily_tweets.first.mday.ordinal %></sup>
-          </div>
-
-          <div class="bg-white dark:bg-slate-700 dark:text-slate-300 shadow-lg border border-slate-100 dark:border-slate-800 overflow-hidden rounded-lg">
-            <ul role="list" id="tweets" class="divide-y divide-slate-200 dark:divide-slate-800">
-              <% daily_tweets.last.each do |tweets| %>
-                <%= render tweets %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-
-      <% end %>
-    <% end %>
-
   </div>
 </main>

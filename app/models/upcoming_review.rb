@@ -7,29 +7,8 @@ class UpcomingReview
 
   delegate :time_threshold, to: :user
 
-  def tweets_deleting_tomorrow?
-    grouped_tweets_this_week[true].present?
-  end
-
-  def remaining_tweets?
-    grouped_tweets_this_week[false].present?
-  end
-
-  def tomorrows_tweets
-    grouped_tweets_this_week[true]
-  end
-
-  def remaining_tweets
-    grouped_tweets_this_week[false].group_by{ |t| t.published_at.to_date }
-  end
-
-  # group this weeks tweets by everything getting deleted tomorrow, and
-  # each day after.
-  #
-  # tomorrow's tweets return under [true]
-  # the rest of the dates are grouped after [false]
   def grouped_tweets_this_week
-    tweets_this_week.group_by{ |t| t.published_at.to_date == tomorrows_deletion_date } 
+    tweets_this_week.group_by{ |t| days_until_deletion(t) } 
   end
 
   # tweets this week grabs all tweets that will be deleted this week
@@ -43,11 +22,22 @@ class UpcomingReview
 
   private
 
-  def stop_date
-    time_threshold.days.ago + 7.days
+  # get the difference between when a tweet was published and 
+  # when it should be deleted by, in days.
+  def days_until_deletion(tweet)
+    published_date = tweet.published_at
+    threshold_date = time_threshold.days.ago
+    days_until_deletion = ((published_date - threshold_date)/1.days).round
+    
+    # if days are in the negative, it will delete tomorrow
+    if days_until_deletion < 0
+      days_until_deletion = 0
+    end
+
+    return days_until_deletion
   end
 
-  def tomorrows_deletion_date
-    (time_threshold.days.ago + 1.days).to_date
+  def stop_date
+    time_threshold.days.ago + 7.days
   end
 end
