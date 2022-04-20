@@ -28,18 +28,18 @@ module TweetHelper
 
   def save_tweet(tweet)
     if tweet.saved?
-      return link_to "Unsave",
-        tweet_saves_path(tweet),
+      return link_to "Don't Keep",
+        keep_path(tweet),
         class: "hover:underline",
         data: {
           turbo_method: :delete
         }
     else
-      return link_to "Save",
-        tweet_saves_path(tweet),
+      return link_to "Keep",
+        keep_path(tweet),
         class: "hover:underline",
         data: {
-          turbo_method: :post
+          turbo_method: :patch
         }
     end
   end
