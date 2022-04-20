@@ -14,6 +14,3 @@ ActiveStorage.start()
 // hotwire
 import "@hotwired/turbo-rails"
 import "controllers"
-
-// tailwind
-import "stylesheets/application.scss"

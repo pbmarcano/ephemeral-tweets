@@ -74,3 +74,5 @@ gem "twitter", "~> 7.0"
 gem "whenever", "~> 1.0"
 
 gem "importmap-rails", "~> 1.0"
+
+gem "cssbundling-rails", "~> 1.1"

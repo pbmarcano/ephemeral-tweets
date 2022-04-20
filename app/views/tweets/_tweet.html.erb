@@ -1,7 +1,7 @@
 <% cache [tweet, tweet.user.setting, Date.today], expires_in: 24.hours.to_i do %>
   <li id="<%= dom_id tweet %>" class="px-6 py-4">
     <div class="flex space-x-3">
-      <div class="flex-shrink-0 mt-1">
+      <div class="shrink-0 mt-1">
         <%= image_tag tweet.profile_image, class: "h-10 w-10 rounded-full" %>
       </div>
       <div class="w-full">
