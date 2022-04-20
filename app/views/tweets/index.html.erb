@@ -1,6 +1,12 @@
 <% content_for :title, current_user.username %>
 
+
 <main class="max-w-2xl mx-auto">
   <%= render "setting_form" %>
-  <%= render "timeline", tweets: @tweets %>
+
+  <%= turbo_stream_from current_user, :tweets %>
+
+  <%= turbo_frame_tag "timeline" do %>
+    <%= render "shared/timeline", tweets: @tweets %>
+  <% end %>
 </main>
