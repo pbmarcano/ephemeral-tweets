@@ -1,5 +1,4 @@
 web: bundle exec rails server -p 3000
-webpack: bin/webpack-dev-server
+css: yarn build:css --watch
 sidekiq: bundle exec sidekiq
 stripe: stripe listen --forward-to localhost:3000/pay/webhooks/stripe
-css: yarn build:css --watch
