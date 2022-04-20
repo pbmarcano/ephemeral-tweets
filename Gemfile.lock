@@ -163,7 +163,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.5.1)
     multipart-post (2.1.1)
@@ -183,12 +182,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.4)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
     nokogiri (1.13.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
     oauth (0.5.8)
     omniauth (2.1.0)
@@ -228,7 +222,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-mini-profiler (2.3.4)
+    rack-mini-profiler (3.0.0)
       rack (>= 1.2.0)
     rack-protection (2.2.0)
       rack
@@ -276,7 +270,7 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    sidekiq (6.4.1)
+    sidekiq (6.4.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -292,7 +286,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
-    stripe (5.50.0)
+    stripe (5.52.0)
     strscan (3.0.1)
     thor (1.2.1)
     thread_safe (0.3.6)
@@ -337,8 +331,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
-  ruby
-  x86_64-linux
 
 DEPENDENCIES
   ahoy_matey (~> 4.0)
@@ -381,4 +373,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.27
+   2.3.11
