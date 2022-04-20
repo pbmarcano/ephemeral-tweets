@@ -293,7 +293,7 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     stripe (5.52.0)
-    strscan (3.0.1)
+    strscan (3.0.0)
     thor (1.2.1)
     thread_safe (0.3.6)
     timeout (0.2.0)
@@ -370,6 +370,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   stripe (>= 2.8, < 6.0)
+  strscan (= 3.0.0)
   turbo-rails
   twitter (~> 7.0)
   tzinfo-data
