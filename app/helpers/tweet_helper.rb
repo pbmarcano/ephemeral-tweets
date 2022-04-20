@@ -20,9 +20,9 @@ module TweetHelper
     return link_to delete_countdown(tweet), 
       tweet_path(tweet), 
       class: "text-red-500 hover:underline",
-      method: :delete, 
       data: { 
-        confirm: "Want to delete this tweet now? This is irreversible." 
+        turbo_method: :delete,
+        turbo_confirm: "Want to delete this tweet now? This is irreversible." 
       } 
   end
 
