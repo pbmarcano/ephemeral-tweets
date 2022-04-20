@@ -31,12 +31,16 @@ module TweetHelper
       return link_to "Unsave",
         tweet_saves_path(tweet),
         class: "hover:underline",
-        method: :delete
+        data: {
+          turbo_method: :delete
+        }
     else
       return link_to "Save",
         tweet_saves_path(tweet),
         class: "hover:underline",
-        method: :post
+        data: {
+          turbo_method: :post
+        }
     end
   end
 
