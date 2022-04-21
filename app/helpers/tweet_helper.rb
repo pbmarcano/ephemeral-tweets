@@ -1,10 +1,10 @@
 module TweetHelper
+  def countdown_days(tweet)
+    "#{threshold_date_diff(tweet)}d"
+  end
+
   def delete_countdown(tweet)
-    if safe_from_deletion?(tweet)
-      return "This tweet would delete in #{delete_timeline(tweet)}"
-    else
-      return "This tweet deletes in #{delete_timeline(tweet)}"
-    end
+    return "This tweet deletes #{delete_timeline(tweet)}"
   end
 
   def date_link_to(tweet)
@@ -14,16 +14,6 @@ module TweetHelper
       class: "text-sm hover:underline",
       target: "_blank" 
     )
-  end
-
-  def delete_now_link(tweet)
-    return link_to delete_countdown(tweet), 
-      tweet_path(tweet), 
-      class: "text-red-500 hover:underline",
-      data: { 
-        turbo_method: :delete,
-        turbo_confirm: "Want to delete this tweet now? This is irreversible." 
-      } 
   end
 
   def keep_tweet(tweet)
@@ -50,25 +40,26 @@ module TweetHelper
     delete_at = threshold(tweet).days.ago
 
     if tweet.published_at < delete_at
-      return "1 day"
+      return "soon"
     else
-      return distance_of_time_in_words(tweet.published_at, delete_at)
+      return "in #{distance_of_time_in_words(tweet.published_at, delete_at)}"
     end
   end
 
-  def safe_from_deletion?(tweet)
-    tweet.saved? || !sweeping?(tweet)
+  def threshold_date_diff(tweet)
+    published_date = tweet.published_at
+    threshold_date = threshold(tweet).days.ago
+    days_until_deletion = ((published_date - threshold_date)/1.days).round
+    
+    # if days are in the negative, it will delete tomorrow
+    if days_until_deletion < 0
+      days_until_deletion = 0
+    end
+
+    return days_until_deletion
   end
 
   def threshold(tweet)
-    @threshold ||= user_settings(tweet).time_threshold
-  end
-
-  def sweeping?(tweet)
-    @sweeping ||= user_settings(tweet).sweeping
-  end
-
-  def user_settings(tweet)
-    @user_settings ||= tweet.user.setting
+    @threshold ||= tweet.user.setting.time_threshold
   end
 end
