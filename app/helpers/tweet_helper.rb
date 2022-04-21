@@ -1,9 +1,9 @@
 module TweetHelper
   def delete_countdown(tweet)
     if safe_from_deletion?(tweet)
-      return "would delete in #{delete_timeline(tweet)}"
+      return "This tweet would delete in #{delete_timeline(tweet)}"
     else
-      return "deletes in #{delete_timeline(tweet)}"
+      return "This tweet deletes in #{delete_timeline(tweet)}"
     end
   end
 
@@ -26,7 +26,7 @@ module TweetHelper
       } 
   end
 
-  def save_tweet(tweet)
+  def keep_tweet(tweet)
     if tweet.saved?
       return link_to "Don't Keep",
         keep_path(tweet),
