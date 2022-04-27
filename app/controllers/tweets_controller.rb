@@ -14,7 +14,7 @@ class TweetsController < ApplicationController
     DeleteTweetJob.perform_now(@tweet)
     respond_to do |format|
       format.html { redirect_to tweets_path }
-      format.turbo_stream { head :no_content }
+      format.turbo_stream
     end
   end
 
