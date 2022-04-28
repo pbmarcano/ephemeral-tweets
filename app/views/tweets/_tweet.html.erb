@@ -1,44 +1,50 @@
 <% cache [tweet, tweet.user.setting, Date.today], expires_in: 24.hours.to_i do %>
-  <li id="<%= dom_id tweet %>" class="px-6 py-4">
-    <div class="flex space-x-3">
-      <div class="shrink-0 mt-1">
-        <%= image_tag tweet.profile_image, class: "h-10 w-10 rounded-full shadow" %>
-      </div>
-      <div class="w-full">
-        <div class="flex justify-between items-start">
-          <div class="flex flex-col sm:flex-row items-baseline">
-            <span class="font-bold text-slate-900 dark:text-slate-200 mr-1">
-              <%= sanitize tweet.name %>
-            </span>
-            <span class="text-sm text-slate-600 dark:text-slate-400 truncate -mt-1 sm:mt-0">
-              @<%= sanitize tweet.username %>
-            </span>
-          </div>
+  <li id="<%= dom_id tweet %>" class="px-2 py-4 sm:px-6 sm:py-4 grid grid-cols-[2.5rem_auto] gap-4">
+    <%# row one %>
 
-          <div class="flex flex-row space-x-1 items-center">
-            <div class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
-              <%= date_link_to(tweet) %>
-            </div>
-            <%= render "tweets/countdown", tweet: tweet %>
-          </div>
+    <%# profile image %>
+    <div class="shrink-0 mt-1">
+      <%= image_tag tweet.profile_image, class: "h-10 w-10 rounded-full shadow" %>
+    </div>
 
-        </div>
-        <div class="text-sm text-slate-700 dark:text-slate-300">
-          <p class="break-words"><%= sanitize tweet.full_text %></p>
-        </div>
-        <div class="mt-8 text-sm flex items-center justify-between">
-          <div class="flex space-x-4 sm:space-x-10 text-slate-500 dark:text-slate-400">
-            <%= render "tweets/replies", tweet: tweet %>
-            <%= render "tweets/retweets", tweet: tweet %>
-            <%= render "tweets/likes", tweet: tweet %>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-slate-500 dark:text-slate-400 font-medium">
-              <%= keep_tweet(tweet) %>
-            </span> 
-          </div>
-        </div>
+    <%# name and username %>
+    <div class="flex justify-between items-baseline">
+      <div class="flex flex-col">
+        <span class="font-bold text-slate-900 dark:text-slate-200 mr-1">
+          <%= sanitize tweet.name %>
+        </span>
+        <span class="text-sm text-slate-600 dark:text-slate-400 truncate -mt-1 sm:mt-0">
+          @<%= sanitize tweet.username %>
+        </span>
       </div>
+
+      <%# date and deletion %>
+      <div class="flex flex-row space-x-1 items-center">
+        <div class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
+          <%= date_link_to(tweet) %>
+        </div>
+        <%= render "tweets/countdown", tweet: tweet %>
+      </div>
+    </div>
+
+    <%# row two %>
+    <%# tweet %>
+    <div class="col-span-2 sm:col-span-1 sm:col-end-3 text-sm text-slate-700 dark:text-slate-300">
+      <p class="break-words"><%= sanitize tweet.full_text %></p>
+    </div>
+
+    <%# row three %>
+    <div class="col-span-2 sm:col-span-1 sm:col-end-3 flex justify-between">
+      <%# engagement info %>
+      <div class="flex space-x-4 sm:space-x-10 text-slate-500 dark:text-slate-400">
+        <%= render "tweets/replies", tweet: tweet %>
+        <%= render "tweets/retweets", tweet: tweet %>
+        <%= render "tweets/likes", tweet: tweet %>
+      </div>
+      <%# keep and don't keep %>
+      <span class="content-end text-slate-500 dark:text-slate-400 font-medium">
+        <%= keep_tweet(tweet) %>
+      </span> 
     </div>
   </li>
 <% end %>
