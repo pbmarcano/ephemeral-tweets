@@ -35,7 +35,9 @@
     </div>
   <% end %>
 
-  <div class="text-center" data-autosubmit-target="submit">
-    <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-slate-200 shadow-md" %>
-  </div>
+  <noscript>
+    <div class="text-center" data-autosubmit-target="submit">
+      <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-slate-200 shadow-md" %>
+    </div>
+  </noscript>
 <% end %>
