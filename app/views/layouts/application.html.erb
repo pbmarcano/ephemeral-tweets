@@ -42,9 +42,7 @@
       </div>
       <div class="relative pt-6 pb-16 sm:pb-24">
         <%= render "shared/nav" %>
-        <% unless current_page?(root_path) %>
-          <%= render "shared/tabs" %>
-        <% end %>
+        <%= render "shared/tabs" %>
         <%= yield %>
       </div>
     </div>
