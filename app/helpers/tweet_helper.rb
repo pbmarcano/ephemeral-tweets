@@ -9,9 +9,9 @@ module TweetHelper
 
   def date_link_to(tweet)
     return link_to(
-      tweet.published_at.strftime("%b %d, %Y"), 
+      tweet.published_at.strftime("%D"), 
       tweet.url, 
-      class: "text-sm hover:underline",
+      class: "hover:underline",
       target: "_blank" 
     )
   end
