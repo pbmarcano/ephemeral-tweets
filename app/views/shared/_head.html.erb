@@ -4,10 +4,20 @@
     | <%= yield(:title) %>  
   <% end %>
 </title>
+
 <%= favicon_link_tag %>
 <%= favicon_link_tag "favicon.png", rel: "apple-touch-icon", type: "image/png" %>
 <%= favicon_link_tag "safari-pinned-tab.svg", rel: "mask-icon", color: "#5bbad5" %>
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@SweepYourTweets" />
+<meta name="twitter:creator" content="@pbmarcano" />
+<meta name="twitter:title" content="Tidy up your Twitter profile in two clicks" />
+<meta name="twitter:description" content="Tweet Sweeper automatically deletes your old tweets so you can show off the current you." />
+<meta name="twitter:image" content="<%= image_url("card-share.png") %>" />
+
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
