@@ -11,12 +11,13 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@SweepYourTweets" />
 <meta name="twitter:creator" content="@pbmarcano" />
-<meta name="twitter:title" content="Tidy up your Twitter profile in two clicks" />
-<meta name="twitter:description" content="Tweet Sweeper automatically deletes your old tweets so you can show off the current you." />
-<meta name="twitter:image" content="<%= image_url("card-share.png") %>" />
+<meta property="og:title" content="Tidy up your Twitter profile" />
+<meta property="og:description" content="Tweet Sweeper deletes your old tweets, automatically" />
+<meta property="og:image" content="<%= image_url("card-share.png") %>" />
+<meta property="og:url" content="<%= request.original_url %>" />
 
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
