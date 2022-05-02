@@ -1,0 +1,24 @@
+<%= form_with(
+  model: current_user.setting, 
+  url: upcoming_setting_path,
+  data: {
+    controller: "autosubmit",
+    autosubmit_target: "form"
+  }) do |form| %>
+
+  <div class="flex items-center space-x-4 sm:space-x-2 text-lg sm:text-xl">
+    <%= form.check_box :upcoming_notification,
+      class: "h-5 w-5 rounded text-sky-500 dark:bg-slate-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
+      data: { action: "autosubmit#submit" } %>
+    <%= form.label :upcoming_notification, class: "leading-tight" do %>
+      <span class="block sm:inline-block">Email me a weekly review</span> 
+      <span class="block sm:inline-block">every Sunday</span>
+    <% end %>
+  </div>
+
+  <noscript>
+    <div class="text-center mt-4" data-autosubmit-target="submit">
+      <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-slate-200 shadow-md" %>
+    </div>
+  </noscript>
+<% end %>

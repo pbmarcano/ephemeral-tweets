@@ -1,0 +1,28 @@
+<%= form_with(
+  model: current_user.setting, 
+  data: { 
+    turbo_frame: "timeline",
+    controller: "autosubmit",
+    autosubmit_target: "form"
+  }) do |form| %>
+
+  <% if current_user.actively_subscribed? %>
+    <div class="flex justify-center items-center">
+      <%= form.check_box :sweeping, 
+        class: "h-5 w-5 rounded text-sky-500 dark:bg-slate-600 mr-3 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
+        data: { action: "autosubmit#submit" } %> 
+      <%= form.label :sweeping, "Sweep tweets" %>
+    </div>
+  <% else %>
+    <div class="flex items-center flex-col prose mt-4">
+      <span class="dark:text-slate-500 uppercase font-semibold tracking-wide mb-2">Subscribe to start sweeping</span>
+      <%= turbo_frame_tag "checkout_button", src: checkout_path %>
+    </div>
+  <% end %>
+
+  <noscript>
+    <div class="text-center" data-autosubmit-target="submit">
+      <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-slate-200 shadow-md" %>
+    </div>
+  </noscript>
+<% end %>

@@ -1,7 +1,11 @@
 <% content_for :title, "Keeps" %>
 
-<%= render "tweets/setting_form" %>
-
-<%= turbo_frame_tag "timeline" do %>
-  <%= render "shared/timeline", tweets: @tweets %>
+<%= render "shared/header" do %>
+  Keeps
 <% end %>
+
+<%= render "shared/subheader" do %>
+  Tweets saved from the chopping block
+<% end %>
+
+<%= render "shared/timeline", tweets: @tweets %>

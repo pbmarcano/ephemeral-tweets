@@ -1,6 +1,13 @@
 <% content_for :title, "Tweets" %>
 
-<%= render "setting_form" %>
+<%= render "shared/header" do %>
+  <%= render "threshold_setting_form" %>
+<% end %>
+
+<%= render "shared/subheader" do %>
+  <%= render "sweeping_setting_form" %>
+<% end %>
+
 
 <%= turbo_stream_from current_user, :tweets %>
 

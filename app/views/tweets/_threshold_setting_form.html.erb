@@ -1,0 +1,28 @@
+<%= form_with(
+  model: current_user.setting, 
+  data: { 
+    turbo_frame: "timeline",
+    controller: "autosubmit",
+    autosubmit_target: "form"
+  }) do |form| %>
+
+  <div class="sm:flex sm:justify-center sm:items-center space-x-3">
+    <%= form.label :time_threshold, "Sweep tweets after" %>
+    <div class="flex items-center space-x-3 justify-center">
+      <%= form.select :time_threshold, 
+        [7, 30, 90, 180, 365],
+        {},
+        { 
+          class: "block pl-3 pr-10 py-2 text-base dark:bg-slate-700 border-slate-300 dark:border-slate-500 font-bold focus:outline-none focus:ring-sky-500 focus:border-indigo-500 sm:text-xl rounded-md",
+          data: { action: "autosubmit#submit" }
+        } %>
+      <span class>days</span>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="text-center" data-autosubmit-target="submit">
+      <%= form.submit "Update Settings", class: "px-8 py-4 rounded-full bg-white border border-slate-200 shadow-md" %>
+    </div>
+  </noscript>
+<% end %>
