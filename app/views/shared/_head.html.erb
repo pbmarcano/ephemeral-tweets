@@ -1,15 +1,19 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
 <title>
-  Tweet Sweeper
   <% if content_for?(:title) %>
-    | <%= yield(:title) %>  
+    <%= yield(:title) %> /
   <% end %>
+  Tweet Sweeper
 </title>
 
 <%= favicon_link_tag %>
 <%= favicon_link_tag "favicon.png", rel: "apple-touch-icon", type: "image/png" %>
 <%= favicon_link_tag "safari-pinned-tab.svg", rel: "mask-icon", color: "#5bbad5" %>
-
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@SweepYourTweets" />
@@ -19,13 +23,10 @@
 <meta property="og:image" content="<%= image_url("card-share.png") %>" />
 <meta property="og:url" content="<%= request.original_url %>" />
 
-<%= csrf_meta_tags %>
-<%= csp_meta_tag %>
-
-<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
-<%= javascript_importmap_tags %>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet"> 
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+<%= javascript_importmap_tags %>
 <script src="https://js.stripe.com/v3/"></script>
