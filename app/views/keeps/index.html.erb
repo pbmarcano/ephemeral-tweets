@@ -1,8 +1,7 @@
-<% content_for :title, current_user.username %>
+<% content_for :title, "Keeps" %>
 
-<main class="max-w-2xl mx-auto">
-  <%= render "tweets/setting_form" %>
-  <%= turbo_frame_tag "timeline" do %>
-    <%= render "shared/timeline", tweets: @tweets %>
-  <% end %>
-</main>
+<%= render "tweets/setting_form" %>
+
+<%= turbo_frame_tag "timeline" do %>
+  <%= render "shared/timeline", tweets: @tweets %>
+<% end %>
