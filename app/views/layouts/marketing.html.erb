@@ -4,7 +4,12 @@
     <%= render "shared/head" %>
   </head>
 
-  <body class="bg-slate-50 dark:bg-slate-800">
-    <%= yield %>
+  <body class="bg-ts-turquoise">
+    <div class="bg-slate-50 dark:bg-slate-800">
+      <main>
+        <%= yield %>
+      </main>
+      <%= render "shared/footer" %>
+    </div>
   </body>
 </html>

@@ -2,7 +2,7 @@
   <div data-turbo="false">
     <%= button_to "/auth/twitter", 
       method: :post, 
-      class: "font-display mt-12 w-full sm:max-w-sm flex items-center justify-center px-8 py-3 border-b border-sky-700 text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-500 md:py-4 md:text-lg md:px-10" do %>
+      class: "w-full sm:max-w-sm flex items-center justify-center px-8 py-3 border-b border-sky-700 text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-500 md:py-4 md:text-lg md:px-10" do %>
       Sign in with Twitter
       <!-- SVG from: https://gist.github.com/mbostock/3094619 -->
       <svg viewBox="328 355 335 276" class="h-6 w-6 ml-3 fill-current text-white" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@
     <% end %>
   </div>
 <% else %>
-  <%= link_to tweets_path, class: "font-display mt-12 w-full sm:max-w-sm flex items-center justify-center px-8 py-3 border-b border-slate-300 dark:border-slate-600 text-base font-medium rounded-md text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-700 shadow-md md:py-4 md:text-lg md:px-10" do %>
+  <%= link_to tweets_path, class: "w-full sm:max-w-sm flex items-center justify-center px-8 py-3 border-b border-slate-300 dark:border-slate-600 text-base font-medium rounded-md text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-700 shadow-md md:py-4 md:text-lg md:px-10" do %>
     Go to dashboard
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
