@@ -37,4 +37,11 @@ class UserTest < ActiveSupport::TestCase
     assert notified_users.include?(@user1)
     assert notified_users.exclude?(@user2)
   end
+
+  test "users without email addresses don't get upcoming emails" do
+    @user1.update(email: "")
+    notified_users = User.receive_upcoming_notifications
+
+    assert notified_users.exclude?(@user1)
+  end
 end

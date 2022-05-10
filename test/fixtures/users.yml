@@ -21,6 +21,7 @@ one:
   provider: Twitter
   uid: 478934278437894
   username: pbmarcano
+  email: "peter@marcano.io"
   token: MyString
   secret: MyString
   profile_image: MyString
@@ -29,6 +30,7 @@ two:
   provider: Twitter
   uid: 87547438348792
   username: SweepYourTweets
+  email: "peter@tweetsweeper.app"
   token: MyString
   secret: MyString
   profile_image: MyString
