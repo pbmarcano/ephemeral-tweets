@@ -75,6 +75,7 @@ end
 gem "ahoy_matey", "~> 4.0"
 gem "blazer", "~> 2.4"
 gem "cssbundling-rails", "~> 1.1"
+gem "heya", "~> 0.7.0"
 gem "honeybadger", "~> 4.9"
 gem "omniauth-twitter", "~> 1.4"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
