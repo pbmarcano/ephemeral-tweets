@@ -1,5 +1,5 @@
 class TwitterUnauthorizedCampaign < ApplicationCampaign
-  step :first,
+  step :first, wait: 0,
     subject: "We're having trouble connecting to your Twitter account"
 
   step :second, wait: 1.day,

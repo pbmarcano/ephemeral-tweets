@@ -56,6 +56,8 @@ class User < ApplicationRecord
       connect_to_twitter: true
     )
 
+    TwitterUnauthorizedCampaign.remove(user)
+
     return user
   end
 

@@ -61,7 +61,7 @@ class FetchTweetsJob < ApplicationJob
     petes_account.twitter.user(user.uid.to_i) 
 
     # Send user twitter emails to log into tweet sweeper to reconnect
-    TwitterUnauthorizedCampaign.add(user)
+    TwitterUnauthorizedCampaign.add(user, restart: true)
   rescue Twitter::Error::NotFound
     # send an email saying it looks like your deleted your twitter account, 
     # is it temporary or do you also need to cancel Tweet Sweeper?
