@@ -6,6 +6,8 @@ class FetchTweetsJob < ApplicationJob
   retry_on ActiveJob::DeserializationError
   retry_on Twitter::Error::InternalServerError
 
+  rescue_from Twitter::Error::Unauthorized, with: :reauthorize_user 
+
   def perform(user)
     fetched_tweets_by(user).each do |tweet|
       make_tweet(tweet, user)
@@ -46,5 +48,24 @@ class FetchTweetsJob < ApplicationJob
     else
       collect_with_max_id(collection, response.last.id - 1, &block)
     end
+  end
+
+  def reauthorize_user(e)
+    user = arguments[0]
+    petes_account = User.find_by(uid: "40290771")
+
+    # Freenze connecting to twitter until fixed
+    user.update(connect_to_twitter: false)
+
+    # Should throw Twitter::Error::NotFound if user doesn't exist
+    petes_account.twitter.user(user.uid.to_i) 
+
+    # Send user twitter emails to log into tweet sweeper to reconnect
+    TwitterUnauthorizedCampaign.add(user)
+  rescue Twitter::Error::NotFound
+    # send an email saying it looks like your deleted your twitter account, 
+    # is it temporary or do you also need to cancel Tweet Sweeper?
+
+    TwitterNoUserCampaign.add(user)
   end
 end

@@ -1,16 +1,16 @@
 class TwitterUnauthorizedCampaign < ApplicationCampaign
   step :first,
-    subject: "We're having trouble connecting with your Twitter account"
+    subject: "We're having trouble connecting to your Twitter account"
 
-  step :second,
+  step :second, wait: 1.day,
     subject: "Our Twitter connection issues continue..."
 
-  step :third,
-    subject: "Third"
+  step :third, wait: 1.day,
+    subject: "Tweet Sweeper's been disconnected for 2 days"
 
-  step :fourth,
-    subject: "Fourth"
+  step :fourth, wait: 3.days,
+    subject: "Tweet Sweeper's been disconnected for 5 days"
 
-  step :fifth,
-    subject: "Fifth"
+  step :fifth, wait: 2.days,
+    subject: "Tweet Sweeper's been disconnected for a week"
 end
