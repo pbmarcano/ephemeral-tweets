@@ -66,6 +66,6 @@ class FetchTweetsJob < ApplicationJob
     # send an email saying it looks like your deleted your twitter account, 
     # is it temporary or do you also need to cancel Tweet Sweeper?
 
-    TwitterNoUserCampaign.add(user)
+    ErrorMailer.with(user: user).no_twitter_user.deliver_later
   end
 end

@@ -31,6 +31,9 @@
 
 en:
   hello: "Hello world"
+  error_mailer:
+    no_twitter_user:
+      subject: "Can't find your Twitter account!"
   upcoming_mailer:
     notify:
       subject: "%{count} tweets will be deleted this week"
