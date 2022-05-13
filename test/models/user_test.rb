@@ -2,19 +2,20 @@
 #
 # Table name: users
 #
-#  id            :bigint           not null, primary key
-#  email         :string           default(""), not null
-#  first_name    :string
-#  last_name     :string
-#  name          :string
-#  profile_image :string
-#  provider      :string
-#  secret        :string
-#  token         :string
-#  uid           :string
-#  username      :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                 :bigint           not null, primary key
+#  connect_to_twitter :boolean          default(TRUE)
+#  email              :string           default(""), not null
+#  first_name         :string
+#  last_name          :string
+#  name               :string
+#  profile_image      :string
+#  provider           :string
+#  secret             :string
+#  token              :string
+#  uid                :string
+#  username           :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 require "test_helper"
 
@@ -36,6 +37,13 @@ class UserTest < ActiveSupport::TestCase
 
     assert notified_users.include?(@user1)
     assert notified_users.exclude?(@user2)
+  end
+
+  test "filter out users who are unauthorized on twitter" do
+    connected_users = User.connected_to_twitter
+
+    assert connected_users.include?(@user1)
+    assert connected_users.exclude?(@user2)
   end
 
   test "users without email addresses don't get upcoming emails" do

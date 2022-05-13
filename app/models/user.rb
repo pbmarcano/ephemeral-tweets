@@ -2,19 +2,20 @@
 #
 # Table name: users
 #
-#  id            :bigint           not null, primary key
-#  email         :string           default(""), not null
-#  first_name    :string
-#  last_name     :string
-#  name          :string
-#  profile_image :string
-#  provider      :string
-#  secret        :string
-#  token         :string
-#  uid           :string
-#  username      :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                 :bigint           not null, primary key
+#  connect_to_twitter :boolean          default(TRUE)
+#  email              :string           default(""), not null
+#  first_name         :string
+#  last_name          :string
+#  name               :string
+#  profile_image      :string
+#  provider           :string
+#  secret             :string
+#  token              :string
+#  uid                :string
+#  username           :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 class User < ApplicationRecord
   include TwitterClient
@@ -30,13 +31,14 @@ class User < ApplicationRecord
     set_payment_processor :stripe
   end
 
+  scope :connected_to_twitter, -> { where(connect_to_twitter: true) }
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
-
   scope :receive_upcoming_notifications, -> { 
     joins(:setting)
-      .where(setting: { upcoming_notification: true }) 
-      .where.not(email: "")
+      .where(setting: { upcoming_notification: true })
+      .has_email 
   }
+  scope :has_email, -> { where.not(email: "") }
 
   delegate :time_threshold, to: :setting
   delegate :sweeping?, to: :setting
@@ -50,7 +52,8 @@ class User < ApplicationRecord
       email: hash.info.email,
       profile_image: hash.info.image,
       token: hash.credentials.token,
-      secret: hash.credentials.secret
+      secret: hash.credentials.secret,
+      connect_to_twitter: true
     )
 
     return user

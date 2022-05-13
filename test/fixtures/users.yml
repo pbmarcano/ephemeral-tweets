@@ -2,19 +2,20 @@
 #
 # Table name: users
 #
-#  id            :bigint           not null, primary key
-#  email         :string           default(""), not null
-#  first_name    :string
-#  last_name     :string
-#  name          :string
-#  profile_image :string
-#  provider      :string
-#  secret        :string
-#  token         :string
-#  uid           :string
-#  username      :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                 :bigint           not null, primary key
+#  connect_to_twitter :boolean          default(TRUE)
+#  email              :string           default(""), not null
+#  first_name         :string
+#  last_name          :string
+#  name               :string
+#  profile_image      :string
+#  provider           :string
+#  secret             :string
+#  token              :string
+#  uid                :string
+#  username           :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 one:
@@ -22,6 +23,7 @@ one:
   uid: 478934278437894
   username: pbmarcano
   email: "peter@marcano.io"
+  connect_to_twitter: true
   token: MyString
   secret: MyString
   profile_image: MyString
@@ -31,6 +33,7 @@ two:
   uid: 87547438348792
   username: SweepYourTweets
   email: "peter@tweetsweeper.app"
+  connect_to_twitter: false
   token: MyString
   secret: MyString
   profile_image: MyString
