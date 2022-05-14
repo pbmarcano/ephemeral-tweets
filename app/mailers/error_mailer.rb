@@ -12,4 +12,11 @@ class ErrorMailer < ApplicationMailer
       mail to: @user.email, bcc: "peter@tweetsweeper.app"
     end
   end
+
+  def bad_user_email
+    mail to: "peter@tweetsweeper.app",
+      subject: "Bad email address",
+      content_type: "text/html",
+      body: "<html><body><p>Bad email address</p><p>Error: #{params[:error]}</p></body></html>"
+  end
 end
