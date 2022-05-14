@@ -21,6 +21,7 @@
 
 every 6.hours do
   rake "tweets:fetch"
+  rake "heya:scheduler"
 end
 
 every 12.hours do
