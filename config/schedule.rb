@@ -28,6 +28,10 @@ every 12.hours do
   rake "tweets:sweep"
 end
 
+every 1.day do
+  rake "trials:delete_users"
+end
+
 every :sunday, at: '05:00pm' do
   rake "upcoming:notify_users"
 end
