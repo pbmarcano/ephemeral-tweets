@@ -32,6 +32,10 @@ class User < ApplicationRecord
     set_payment_processor :stripe
   end
 
+  before_destroy do
+    TwitterUnauthorizedCampaign.remove(self)
+  end
+
   scope :connected_to_twitter, -> { where(connect_to_twitter: true) }
   scope :enabled_sweeping, -> { joins(:setting).where(setting: { sweeping: true }) }
   scope :receive_upcoming_notifications, -> { 
