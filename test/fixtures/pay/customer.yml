@@ -1,0 +1,11 @@
+stripe:
+  owner: one (User)
+  processor: stripe
+  processor_id: cus_1234
+  default: true
+
+trial:
+  owner: two (User)
+  processor: stripe
+  processor_id: cus_5678
+  default: true

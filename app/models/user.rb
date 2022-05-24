@@ -18,6 +18,7 @@
 #  updated_at         :datetime         not null
 #
 class User < ApplicationRecord
+  include Trial
   include TwitterClient
   pay_customer
 
