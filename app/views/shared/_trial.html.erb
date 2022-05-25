@@ -1,0 +1,5 @@
+<% unless current_user.actively_subscribed? %>
+  <div class="bg-ts-turquoise text-ts-blue font-bold -mt-6 mb-6 py-4 text-center">
+    Your account data will delete in <%= distance_of_time_in_words(current_user.trial_expires_at, DateTime.now) %> unless you subscribe to Tweet Sweeper
+  </div>
+<% end %>

@@ -5,6 +5,10 @@ module Trial
     self.destroy if ready_for_deletion?
   end
 
+  def trial_expires_at
+    created_at + 7.days
+  end
+
   private
 
   def ready_for_deletion?
