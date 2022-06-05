@@ -39,6 +39,15 @@ class UserTest < ActiveSupport::TestCase
     assert notified_users.exclude?(@user2)
   end
 
+  test "users who don't sweep tweets don't get upcoming email" do
+    @user2.setting.update(upcoming_notification: true, sweeping: false)
+
+    notified_users = User.receive_upcoming_notifications
+
+    assert notified_users.include?(@user1)
+    assert notified_users.exclude?(@user2)
+  end
+
   test "filter out users who are unauthorized on twitter" do
     connected_users = User.connected_to_twitter
 

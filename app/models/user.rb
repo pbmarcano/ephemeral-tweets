@@ -41,6 +41,7 @@ class User < ApplicationRecord
   scope :receive_upcoming_notifications, -> { 
     joins(:setting)
       .where(setting: { upcoming_notification: true })
+      .where(setting: { sweeping: true })
       .has_email 
   }
   scope :has_email, -> { where.not(email: "") }
