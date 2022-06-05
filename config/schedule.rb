@@ -28,7 +28,7 @@ every 12.hours do
   rake "tweets:sweep"
 end
 
-every 1.day do
+every 1.day, at: '2:30 am' do
   rake "trials:delete_users"
 end
 
