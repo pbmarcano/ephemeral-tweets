@@ -5,6 +5,7 @@ class FetchTweetsJob < ApplicationJob
   retry_on HTTP::ConnectionError
   retry_on ActiveJob::DeserializationError
   retry_on Twitter::Error::InternalServerError
+  retry_on Twitter::Error::ServiceUnavailable, wait: :exponentially_longer
 
   rescue_from Twitter::Error::Unauthorized, with: :reauthorize_user 
 

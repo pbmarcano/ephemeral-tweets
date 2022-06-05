@@ -1,6 +1,12 @@
 class DeleteTweetJob < ApplicationJob
   queue_as :default
 
+  # retry on errors... see if this stops them from getting logged
+  retry_on HTTP::ConnectionError
+  retry_on ActiveJob::DeserializationError
+  retry_on Twitter::Error::InternalServerError
+  retry_on Twitter::Error::ServiceUnavailable, wait: :exponentially_longer
+
   def perform(tweet)
     @tweet = tweet
 
