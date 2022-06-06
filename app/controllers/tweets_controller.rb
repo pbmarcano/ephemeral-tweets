@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :destroy]
 
   def index
-    @pagy, @tweets = pagy_countless(current_user.unsaved_tweets.oldest_first)
+    @pagy, @tweets = pagy(current_user.unsaved_tweets.oldest_first)
 
     respond_to do |format|
       format.html

@@ -15,8 +15,6 @@
   <%= render "shared/timeline", tweets: @tweets %>
 <% end %>
 
-<div id="next-link">
-  <%= button_to "Next", pagy_url_for(@pagy, @pagy.next) %>
-</div>
-
-<%# <%== pagy_nav(@pagy) %1> %>
+<%= turbo_frame_tag "pagination", src: tweets_path(format: :turbo_stream), loading: :lazy do %>
+  <%== pagy_nav(@pagy) %>
+<% end %>
