@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :settings, only: :update
   resources :tweets, only: [:index, :show, :destroy] do
     collection do
+      post :index
       get :fetch
       get :sweep
     end

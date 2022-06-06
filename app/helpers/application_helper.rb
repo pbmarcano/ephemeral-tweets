@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def nav_link_to(title, path, options = {}, &block)
     path, options = title, path if block_given?
 

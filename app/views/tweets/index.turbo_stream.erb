@@ -1,0 +1,9 @@
+<%= turbo_stream.append "tweets" do %>
+  <%= render partial: "tweets/tweet", collection: @tweets %>
+<% end %>
+
+<%= turbo_stream.update "next-link" do %>
+  <% if @pagy.next.present? %>
+    <%= button_to "Next", pagy_url_for(@pagy, @pagy.next) %>
+  <% end %>
+<% end %>

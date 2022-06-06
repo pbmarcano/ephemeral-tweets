@@ -3,8 +3,12 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :destroy]
 
   def index
-    @tweets = current_user.unsaved_tweets.oldest_first
-    ahoy.track "visted dashboard", { user: current_user }
+    @pagy, @tweets = pagy_countless(current_user.unsaved_tweets.oldest_first)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
   
   def show
