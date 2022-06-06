@@ -4,8 +4,6 @@
 
 <% if @pagy.next.present? %>
   <%= turbo_stream.update "pagination" do %>
-    <%= turbo_frame_tag "pagination", src: tweets_path(page: @pagy.next, format: :turbo_stream), loading: :lazy do %>
-      <%== pagy_nav(@pagy) %>
-    <% end %>
+    <%= turbo_frame_tag "pagination", src: tweets_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
   <% end %>
 <% end %>
