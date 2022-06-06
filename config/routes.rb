@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resource :billing, only: :show
   resource :checkout, only: :show
   resource :home, only: :show
-  resources :keeps, only: [:index, :update, :destroy]
+  resources :keeps, only: [:index, :update, :destroy] do
+    collection do
+      post :index
+    end
+  end
   resource :session, only: :destroy
   resources :settings, only: :update
   resources :tweets, only: [:index, :show, :destroy] do

@@ -3,7 +3,12 @@ class KeepsController < ApplicationController
   before_action :set_tweet, only: [:update, :destroy]
 
   def index
-    @tweets = current_user.saved_tweets.oldest_first
+    @pagy, @tweets = pagy(current_user.saved_tweets.oldest_first)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def update
