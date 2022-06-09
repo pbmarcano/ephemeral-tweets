@@ -20,6 +20,7 @@
 class User < ApplicationRecord
   include Trial
   include TwitterClient
+  include UpcomingTweets
   pay_customer
 
   has_one  :setting, dependent: :destroy

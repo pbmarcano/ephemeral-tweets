@@ -3,7 +3,7 @@ Yo @<%= @user.username %>,
 </p>
 
 <p>
-You have <b><%= pluralize(@upcoming_review.tweets_this_week.count, "tweet") %></b> that are ready to be deleted this week.
+You have <b><%= pluralize(@user.upcoming_tweets_this_week.count, "tweet") %></b> that are ready to be deleted this week.
 </p>
 
 <p>

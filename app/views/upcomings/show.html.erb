@@ -9,7 +9,7 @@
 <% end %>
 
 <%# Body %>
-<% if @upcoming_review.tweets_this_week.empty? %>
+<% if @upcoming_tweets.empty? %>
   <div class="flex flex-col items-center">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="h-32 sm:h-64 w-32 sm:w-64 fill-slate-600 heroicon-diamond heroicon heroicons-lg">
       <polygon class="heroicon-diamond-shape heroicon-component-fill fill-slate-200 dark:fill-slate-600" fill="#FFFFFF" points="20 17 50 13 80 17 100 37 50 87 0 37"></polygon>
@@ -24,7 +24,7 @@
 <% end %>
 
 <div class="flex flex-col space-y-4">
-  <% @upcoming_review.grouped_tweets_this_week.each do |daily_tweets| %>
+  <% @grouped_tweets.each do |daily_tweets| %>
     <div>
       <div class="text-xl font-bold text-slate-600 dark:text-slate-400 tracking-wide m-2 mt-6">
         <%= deletion_day(daily_tweets.first) %>
@@ -34,3 +34,10 @@
     </div>
   <% end %>
 </div>
+
+<% if @pagy.next.present? || @pagy.prev.present? %>
+  <div class="flex flex-col items-center justify-center mt-8 space-y-4">
+    <%== pagy_info(@pagy, item_name: "Tweet".pluralize(@pagy.count)) %>
+    <%== pagy_nav(@pagy) %>
+  </div>
+<% end %>

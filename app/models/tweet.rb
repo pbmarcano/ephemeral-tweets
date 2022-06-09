@@ -29,10 +29,12 @@ class Tweet < ApplicationRecord
   scope :oldest_first, -> { order(published_at: :asc) }
   scope :not_saved, -> { where(saved_at: nil) }
   scope :saved, -> { where.not(saved_at: nil) }
+  scope :group_by_deletion_date, -> { group_by{ |t| days_until_deletion(t) } }
 
   delegate :name, to: :user
   delegate :profile_image, to: :user
   delegate :username, to: :user
+  delegate :time_threshold, to: :user
 
   after_create_commit do
     broadcast_prepend_later_to user, :tweets, target: "tweets"
@@ -40,5 +42,20 @@ class Tweet < ApplicationRecord
 
   def saved?
     saved_at.present?
+  end
+
+  private
+
+  def self.days_until_deletion(tweet)
+    published_date = tweet.published_at
+    threshold_date = tweet.time_threshold.days.ago
+    days_until_deletion = ((published_date - threshold_date)/1.days).round
+    
+    # if days are in the negative, it will delete tomorrow
+    if days_until_deletion < 0
+      days_until_deletion = 0
+    end
+
+    return days_until_deletion
   end
 end
