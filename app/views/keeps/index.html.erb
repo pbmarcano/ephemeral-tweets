@@ -11,10 +11,17 @@
 <%= render "shared/timeline", tweets: @tweets %>
 
 <%= turbo_frame_tag "pagination", src: keeps_path(format: :turbo_stream), loading: :lazy do %>
+  <%# Pagination if javascript is disabled %>
   <% if @pagy.next.present? || @pagy.prev.present? %>
-    <div class="flex flex-col items-center justify-center mt-8 space-y-4">
-      <%== pagy_info(@pagy, item_name: "Tweet".pluralize(@pagy.count)) %>
-      <%== pagy_nav(@pagy) %>
-    </div>
+    <noscript>
+      <style>#spinner { display: none; }</style>
+      <div class="flex flex-col items-center justify-center mt-8 space-y-4">
+        <%== pagy_info(@pagy, item_name: "Tweet".pluralize(@pagy.count)) %>
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </noscript>
   <% end %>
+
+  <%# infinite scroll if javascript is enabled %>
+  <%= render "shared/spinner" if @pagy.next.present? %>
 <% end %>
