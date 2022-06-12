@@ -38,7 +38,14 @@ class Tweet < ApplicationRecord
   delegate :username, to: :user
   delegate :time_threshold, to: :user
 
-  pg_search_scope :search_by_text, against: :full_text
+  pg_search_scope :search_by_text, 
+    against: :full_text, 
+    using: {
+      tsearch: { 
+        prefix: true, 
+        negation: true 
+      }
+    }
 
   after_create_commit do
     broadcast_prepend_later_to user, :tweets, target: "tweets"
