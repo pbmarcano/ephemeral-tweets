@@ -1,0 +1,19 @@
+<div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:inset-0">
+  <div class="w-full sm:max-w-xs">
+    <%= form_with(url: search_path, method: :get) do |form| %>
+      <label for="search" class="sr-only">Search</label>
+      <div class="relative">
+        <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+          <!-- Heroicon name: solid/search -->
+          <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <%= form.search_field :query, 
+          class: "block w-full bg-slate-200 dark:bg-slate-700 border border-transparent rounded-md py-2 pl-10 pr-3 text-sm placeholder-slate-400 focus:outline-none focus:bg-white dark:focus:bg-slate-300 focus:border-sky-400 dark:focus:border-slate-300 focus:ring-sky-400 dark:focus:ring-slate-300 focus:text-slate-900 dark:text-slate-300 focus:placeholder-slate-500 sm:text-sm", 
+          value: params[:query],
+          placeholder: "Search" %>
+      </div>
+    <% end %>
+  </div>
+</div>

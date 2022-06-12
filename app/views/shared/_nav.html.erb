@@ -1,14 +1,18 @@
-<header class="max-w-2xl my-2 px-2 md:px-0 mx-auto flex justify-between">
+<header class="max-w-2xl my-2 px-2 md:px-0 mx-auto flex justify-between items-center">
   <div class="flex items-baseline font-display font-bold dark:text-slate-300">
     <%= link_to root_path do %>
       <%= render "shared/logo", height: "h-7 inline-block mr-2" %>
-      <span class="text-sky-600 dark:text-sky-500">Tweet</span> Sweeper
+      <div class="hidden sm:inline-block">
+        <span class="text-sky-600 dark:text-sky-500">Tweet</span> Sweeper
+      </div>
     <% end %>
   </div>
 
   <% if current_user.present? %>
+    <%= render "shared/search" %>
+
     <div id="nav-dropdown" class="flex items-center justify-end">
-      <div class="shrink-0 relative ml-5" 
+      <div class="shrink-0 relative ml-1" 
            data-controller="dropdown"
            data-dropdown-entering-class="ease-out duration-100"
            data-dropdown-visible-class="opacity-100 scale-100"

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post :index
     end
   end
+  resource :search, only: :show
   resource :session, only: :destroy
   resources :settings, only: :update
   resources :tweets, only: [:index, :show, :destroy] do

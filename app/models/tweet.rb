@@ -25,6 +25,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Tweet < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :user
   scope :oldest_first, -> { order(published_at: :asc) }
   scope :not_saved, -> { where(saved_at: nil) }
@@ -35,6 +37,8 @@ class Tweet < ApplicationRecord
   delegate :profile_image, to: :user
   delegate :username, to: :user
   delegate :time_threshold, to: :user
+
+  pg_search_scope :search_by_text, against: :full_text
 
   after_create_commit do
     broadcast_prepend_later_to user, :tweets, target: "tweets"
