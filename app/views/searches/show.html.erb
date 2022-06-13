@@ -1,4 +1,4 @@
-<% content_for :title, "#{pluralize(@tweets.count, "tweet")} with \"#{params[:query]}\"" %>
+<% content_for :title, "#{pluralize(@pagy.count, "tweet")} with \"#{params[:query]}\"" %>
 
 <%= render "shared/header" do %>
   <%= yield :title %>
@@ -9,18 +9,18 @@
 
 <%= render "shared/timeline", tweets: @tweets %>
 
-<%# <%= turbo_frame_tag "pagination", src: searches_path(format: :turbo_stream), loading: :lazy do %1> %>
-<%#   <%1# Pagination if javascript is disabled %1> %>
-<%#   <% if @pagy.next.present? || @pagy.prev.present? %1> %>
-<%#     <noscript> %>
-<%#       <style>#spinner { display: none; }</style> %>
-<%#       <div class="flex flex-col items-center justify-center mt-8 space-y-4"> %>
-<%#         <%== pagy_info(@pagy, item_name: "Tweet".pluralize(@pagy.count)) %1> %>
-<%#         <%== pagy_nav(@pagy) %1> %>
-<%#       </div> %>
-<%#     </noscript> %>
-<%#   <% end %1> %>
+<%= turbo_frame_tag "pagination", src: search_path(format: :turbo_stream, query: params[:query]), loading: :lazy do %>
+  <%# Pagination if javascript is disabled %>
+  <% if @pagy.next.present? || @pagy.prev.present? %>
+    <noscript>
+      <style>#spinner { display: none; }</style>
+      <div class="flex flex-col items-center justify-center mt-8 space-y-4">
+        <%== pagy_info(@pagy, item_name: "Tweet".pluralize(@pagy.count)) %>
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </noscript>
+  <% end %>
 
-<%#   <%1# infinite scroll if javascript is enabled %1> %>
-<%#   <%= render "shared/spinner" if @pagy.next.present? %1> %>
-<%# <% end %1> %>
+  <%# infinite scroll if javascript is enabled %>
+  <%= render "shared/spinner" if @pagy.next.present? %>
+<% end %>

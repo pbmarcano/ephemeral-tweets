@@ -1,7 +1,7 @@
-<% content_for :title, "Upcoming" %>
+<% content_for :title, "Upcoming Week" %>
 
 <%= render "shared/header" do %>
-  Upcoming week
+  <%= yield :title %>
 <% end %>
 
 <%= render "shared/subheader" do %>

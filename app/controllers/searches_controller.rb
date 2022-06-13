@@ -3,7 +3,12 @@ class SearchesController < ApplicationController
 
   def show
     if params[:query].present?
-      @tweets = tweets
+      @pagy, @tweets = pagy(tweets)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     else
       redirect_to tweets_path
     end
