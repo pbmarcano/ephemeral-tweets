@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_12_193247) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_224718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -278,7 +278,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_193247) do
     t.string "email", default: "", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "name"
+    t.string "twitter_name"
     t.boolean "connect_to_twitter", default: true
   end
 

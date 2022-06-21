@@ -7,11 +7,11 @@
 #  email              :string           default(""), not null
 #  first_name         :string
 #  last_name          :string
-#  name               :string
 #  profile_image      :string
 #  provider           :string
 #  secret             :string
 #  token              :string
+#  twitter_name       :string
 #  uid                :string
 #  username           :string
 #  created_at         :datetime         not null

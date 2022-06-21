@@ -7,11 +7,11 @@
 #  email              :string           default(""), not null
 #  first_name         :string
 #  last_name          :string
-#  name               :string
 #  profile_image      :string
 #  provider           :string
 #  secret             :string
 #  token              :string
+#  twitter_name       :string
 #  uid                :string
 #  username           :string
 #  created_at         :datetime         not null
@@ -54,7 +54,7 @@ class User < ApplicationRecord
     user = find_or_create_by(provider: hash[:provider], uid: hash[:uid])
 
     user.update(
-      name: hash.info.name,
+      twitter_name: hash.info.name,
       username: hash.info.nickname,
       email: hash.info.email,
       profile_image: hash.info.image,
@@ -74,5 +74,9 @@ class User < ApplicationRecord
 
   def billing_portal
     actively_subscribed? ? payment_processor.billing_portal : nil
+  end
+
+  def name
+    "@#{username}"
   end
 end

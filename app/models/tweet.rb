@@ -33,7 +33,7 @@ class Tweet < ApplicationRecord
   scope :saved, -> { where.not(saved_at: nil) }
   scope :group_by_deletion_date, -> { group_by{ |t| days_until_deletion(t) } }
 
-  delegate :name, to: :user
+  delegate :twitter_name, to: :user
   delegate :profile_image, to: :user
   delegate :username, to: :user
   delegate :time_threshold, to: :user
