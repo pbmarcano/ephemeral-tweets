@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   after_create do
     Setting.create(user: self)
-    FetchTweetsJob.perform_later(self)
+    # FetchTweetsJob.perform_later(self)
     set_payment_processor :stripe
   end
 

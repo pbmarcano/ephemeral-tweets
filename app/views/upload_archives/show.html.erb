@@ -1,0 +1,37 @@
+<% content_for :title, "Upload Archive" %>
+
+<%= render "shared/header" do %>
+  Upload Archive
+<% end %>
+
+<%= render "shared/subheader" %>
+
+<div class="prose prose-lg text-slate-800 dark:text-slate-400 mx-1">
+  <p>
+  Tweet Sweeper, like all Twitter apps, can only pull your 3,200 most recent tweets.
+  </p>
+  <p>
+  If you want Tweet Sweeper to delete the remaining tweets, you'll need to upload your <b>tweet archive</b> to Tweet Sweeper.
+  </p>
+  <h3 class="dark:text-slate-300">How to upload your Tweet Archive</h3>
+  <p>
+  <b>Step 1</b>: <a href="https://twitter.com/settings/download_your_data" class="text-sky-600">Request your Twitter archive</a> — This may take a few days, so Twitter will notify you when it's ready.
+  </p>
+  <figure>
+    <%= image_tag "archive/request.png", class: "shadow-lg rounded-lg sm:mx-6" %>
+  </figure>
+  <p>
+  <b>Step 2</b>: Download your archive, unzip it, and locate <span class="font-mono font-bold text-sm bg-slate-200 rounded p-1">tweet.js</span> in the <span class="font-mono font-bold text-sm bg-slate-200 rounded p-1">data</span> folder. 
+  </p>
+  <p>
+  <b>Step 3</b>: Upload <span class="font-mono font-bold text-sm bg-slate-200 rounded p-1">tweet.js</span> here: 
+  </p>
+  <%= form_with(url: upload_archive_path, class: "flex flex-col mx-4 bg-white dark:bg-gray-700 rounded shadow p-8", data: { turbo: false }) do |form| %>
+    <%= form.label :archive, class: "sr-only" %>
+    <%= form.file_field :archive %>
+    <%= form.submit "Upload Archive", class: "mt-8 w-full sm:max-w-sm flex items-center justify-center px-8 py-3 border-b border-sky-700 text-base font-medium rounded-md text-white bg-sky-600 hover:bg-sky-500 md:py-4 md:text-lg md:px-10" %>
+  <% end %>
+  <p>
+  Tweet Sweeper will use this file to locate your old tweets. Once it has, it will pause the "Delete tweets" feature to give you time to set aside any tweets you'd like to keep.
+  </p>
+</div>

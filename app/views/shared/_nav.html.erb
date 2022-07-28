@@ -33,12 +33,13 @@
           <% if current_user.actively_subscribed? %>
             <%= link_to "Manage Subscription", billing_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
           <% end %>
-          <% if Rails.env.development? %>
-            <%= link_to "Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
-            <%= link_to "Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
-          <% end %>
+          <%= link_to "Upload Archive", upload_archive_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
           <!-- Active: "bg-slate-100", Not Active: "" -->
           <%= link_to "Sign out", session_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400", role: "menuitem", tabindex: "-1", data: { turbo_method: :delete } %>
+          <%# <% if Rails.env.development? %1> %>
+          <%#   <%= link_to "Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %1> %>
+          <%#   <%= link_to "Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %1> %>
+          <%# <% end %1> %>
         </div>
       </div>
     </div>

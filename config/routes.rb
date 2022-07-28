@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resource :billing, only: :show
   resource :checkout, only: :show
   resource :home, only: :show
+  resource :upload_archive, only: [:show, :create]
   resources :keeps, only: [:index, :update, :destroy] do
     collection do
       post :index
