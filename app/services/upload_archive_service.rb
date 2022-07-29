@@ -1,21 +1,22 @@
 class UploadArchiveService
-  def create_tweets(archive, current_user)
-    tweet_data = prep_tweet_data(archive)
-    save_tweets(tweet_data, current_user)
+  attr_reader :user
+
+  def create_tweets(current_user)
+    @user = current_user
+    tweet_data = prep_tweet_data
+    save_tweets(tweet_data)
   end
 
   private
 
-  def save_tweets(tweet_data, current_user)
-    tweet_data.each do |tweet|
-      make_tweet(tweet, current_user)
-    end
+  def save_tweets(tweet_data)
+    tweet_data.each { |tweet| make_tweet(tweet) }
   end
 
-  def make_tweet(tweet, current_user)
+  def make_tweet(tweet)
     t = Tweet.find_or_initialize_by(
       tweet_id: tweet["tweet"]["id"], 
-      user: current_user
+      user: user
     )
 
     t.assign_attributes(
@@ -23,15 +24,15 @@ class UploadArchiveService
       full_text: tweet["tweet"]["full_text"],
       retweet_count: tweet["tweet"]["retweet_count"].to_i,
       favorite_count: tweet["tweet"]["favorite_count"].to_i,
-      url: "https://twitter.com/#{current_user.username}/status/#{tweet["tweet"]["id"]}"
+      url: "https://twitter.com/#{user.username}/status/#{tweet["tweet"]["id"]}"
     )
 
     t.save
   end
 
-  def prep_tweet_data(archive)
+  def prep_tweet_data
     # put each line of tweet archive in an array
-    archive_lines = File.open(archive).readlines
+    archive_lines = user.archive.download.split("\n")
     # replace the header
     archive_lines[0].replace("[\n")
     # merge array back into one big string

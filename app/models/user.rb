@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_one  :setting, dependent: :destroy
   has_many :tweets, dependent: :destroy
   has_many :visits, class_name: "Ahoy::Visit"
+  has_one_attached :archive
 
   after_create do
     Setting.create(user: self)
