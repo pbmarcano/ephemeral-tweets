@@ -37,3 +37,6 @@ en:
   upcoming_mailer:
     notify:
       subject: "%{count} tweets will be deleted this week"
+  upload_archive_mailer:
+    bad_file:
+      subject: "File upload failed"

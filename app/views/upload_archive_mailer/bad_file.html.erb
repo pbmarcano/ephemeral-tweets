@@ -1,0 +1,7 @@
+Hey @<%= @user.username %>,
+
+<p>
+Tweet Sweeper tried to upload your archive with the file you provided — <b><%= @user.archive.filename.to_s %></b>
+</p>
+
+<p>Please try again by uploading your <b>tweet.js</b> file <%= link_to "here", upload_archive_url %>.</p>
