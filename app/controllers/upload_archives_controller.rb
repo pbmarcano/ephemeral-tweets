@@ -5,9 +5,19 @@ class UploadArchivesController < ApplicationController
   end
 
   def create
-    current_user.archive.attach(params[:archive])
+    @archive = UploadArchiveForm.new(
+      user: current_user, 
+      archive: params[:archive]
+    )
 
-    UploadArchiveService.new.create_tweets(current_user)
-    redirect_to tweets_path
+    if @archive.save
+      redirect_to tweets_path, notice: "Tweet Sweeper is loading tweets from your archive"
+    else
+      render :show
+    end
   end
+
+#     current_user.archive.attach(params[:archive])
+#     UploadArchiveService.new.create_tweets(current_user)
+#     redirect_to tweets_path
 end
