@@ -10,11 +10,27 @@
             Tidy up your Twitter profile in two clicks
           </h1>
           <p class="mt-6 text-xl text-slate-600 dark:text-slate-400">
-          <span class="font-black text-sky-600 dark:text-sky-400">Tweet Sweeper</span> constantly deletes your old tweets so you can always be the new and improved you.
+          <span class="font-black text-sky-600 dark:text-sky-400">Tweet Sweeper</span> automatically deletes your old tweets so you can always show off the new and improved you.
           </p>
         </div>
         <div class="mt-12">
           <%= render "sign_in_dash_button" %>
+          <div class="mt-6">
+            <div class="inline-flex items-center divide-x divide-slate-300 dark:divide-slate-600">
+              <div class="flex-shrink-0 flex pr-5">
+                <div class="flex -space-x-2 relative z-0 overflow-hidden">
+                  <% cache @social_proof_users do %>
+                    <% depths = [ "z-40", "z-30", "z-20", "z-10", "z-0" ] %>
+                    <% @social_proof_users.each.with_index do |user, index| %>
+                      <% css_class = "#{depths[index]} relative inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-slate-800" %>
+                      <%= image_tag user.profile_image, class: css_class %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="min-w-0 flex-1 pl-5 py-1 text-sm text-slate-500 dark:text-slate-400 sm:py-3">Clean up your Twitter profile today</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
