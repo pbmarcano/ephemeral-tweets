@@ -12,6 +12,8 @@ class DeleteTweetJob < ApplicationJob
 
     delete_from_twitter
     @tweet.destroy
+
+    Ahoy::Tracker.new(user: @tweet.user).track("deleted tweet", @tweet)
   end
 
   private
