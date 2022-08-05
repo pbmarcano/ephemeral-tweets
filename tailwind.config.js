@@ -16,7 +16,8 @@ module.exports = {
         'ts-white': '#d9f8f8',
       },
       fontFamily: {
-        'display': ['Poppins', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        'display': ['Poppins', 'Inter var', ...defaultTheme.fontFamily.sans],
       }
     }
   },
