@@ -3,6 +3,8 @@ module HomesHelper
     "#{depths[index]} relative inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-slate-800" 
   end
 
+  private
+
   def depths
     [
       "z-50",
