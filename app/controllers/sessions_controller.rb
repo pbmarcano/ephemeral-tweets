@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_from_auth_hash(auth_hash)
     session[:user_id] = @user.id
     ahoy.authenticate(current_user)
-    ahoy.track "sign in", current_user
     redirect_to tweets_path
   end
 
