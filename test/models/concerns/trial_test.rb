@@ -1,6 +1,6 @@
 require "test_helper"
 
-class TrailTest < ActiveJob::TestCase
+class TrialTest < ActiveJob::TestCase
   setup do
     @subscribed_user = users(:one)
     @unsubscribed_user = users(:two)
