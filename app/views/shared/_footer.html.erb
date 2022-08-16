@@ -12,7 +12,13 @@
     </div>
     <div class="mt-8 md:mt-0 md:order-1">
       <p class="text-center md:text-left text-base text-slate-500">Made by <a href="https://marcano.io/" class="underline underline-offset-2 hover:text-slate-600">Peter Marcano</a></p>
-      <p class="text-center md:text-left text-base text-slate-500">&copy; <%= Time.now.year %> Marcano Ventures</p>
+      <p class="text-center md:text-left text-base text-slate-500">
+      &copy; <%= Time.now.year %> Marcano Ventures
+      </p>
+      <p class="text-center md:text-left text-base text-slate-600">
+      <%= link_to "Terms of Service", tos_path %>
+      &bull; <%= link_to "Privacy Policy", privacy_path %>
+      </p>
     </div>
   </div>
 </footer>
