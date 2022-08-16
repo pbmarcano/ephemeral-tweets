@@ -19,7 +19,12 @@
 <meta name="twitter:site" content="@SweepYourTweets" />
 <meta name="twitter:creator" content="@pbmarcano" />
 <meta property="og:title" content="Tidy up your Twitter profile with Tweet Sweeper" />
-<meta property="og:description" content="Tweet Sweeper deletes your old and embarassing tweets, automatically. Set it and forget it." />
+<% if content_for?(:description) %>
+  <% description = yield(:description) %>
+<% else %>
+  <% description = "Tweet Sweeper deletes your old and embarassing tweets, automatically. Set it and forget it." %>
+<% end %>
+<meta property="og:description" content="<%= description %>" />
 <meta property="og:image" content="<%= image_url("card-share.png") %>" />
 <meta property="og:url" content="<%= request.original_url %>" />
 
