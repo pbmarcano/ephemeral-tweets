@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   resource :upcoming, only: :show
   resource :upcoming_setting, only: :update
 
+  get "privacy", to: "policies#privacy"
+  get "tos", to: "policies#tos"
   root "homes#show"
 end

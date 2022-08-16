@@ -1,6 +1,12 @@
 module ApplicationHelper
   include Pagy::Frontend
 
+  def extends(layout = "application", &block)
+    layout = layout.to_s
+    layout = "layouts/#{layout}" unless layout.include?("/")
+    render inline: capture(&block), layout: layout
+  end
+
   def nav_link_to(title, path, options = {}, &block)
     path, options = title, path if block_given?
 
