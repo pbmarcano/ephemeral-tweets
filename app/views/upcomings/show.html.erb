@@ -1,11 +1,14 @@
-<% content_for :title, "Upcoming Week" %>
+<% content_for :title, "Last Chance" %>
 
 <%= render "shared/header" do %>
   <%= yield :title %>
 <% end %>
 
 <%= render "shared/subheader" do %>
-  <%= render "upcoming_setting_form" %>
+  <div class="text-center">
+    <p class="mb-2">Here's what will be deleted this week:</p>
+    <%= render "upcoming_setting_form" %>
+  </div>
 <% end %>
 
 <%# Body %>
