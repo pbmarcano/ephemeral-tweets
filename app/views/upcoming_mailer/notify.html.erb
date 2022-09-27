@@ -1,20 +1,50 @@
+<% 
+  def deletion_day(days_until_deletion)
+    case days_until_deletion
+    when 0 then "Sometime today"
+    when 1 then "Tomorrow"
+    else
+      days_until_deletion.days.from_now.strftime("%A, %B %e")
+    end
+  end
+%>
+
 <p>
-Yo @<%= @user.username %>,
+Hey @<%= @user.username %>,
 </p>
 
 <p>
-You have <b><%= pluralize(@user.upcoming_tweets_this_week.count, "tweet") %></b> that are ready to be deleted this week.
+Here are <b><%= pluralize(@user.upcoming_tweets_this_week.count, "tweet") %></b> that will be deleted this week.
 </p>
 
 <p>
-If you think you want to keep any of these tweets, head over to <%= link_to "Tweet Sweeper", upcoming_url %> and check them out before they're gone.
+If you want to keep any of these tweets, head over to <%= link_to "Tweet Sweeper", upcoming_url %> and keep them out before they're gone.
 </p>
 
-<p>
-Cheers,<br />
-Pete
-</p>
+
+<% @grouped_tweets.each do |daily_tweets| %>
+  <div>
+    <br />
+    <div>
+      <strong><%= deletion_day(daily_tweets.first) %></strong>
+    </div>
+    <hr />
+
+    <% daily_tweets.last.each do |tweet| %>
+      <p>
+      <%= sanitize tweet.full_text %>
+      <br />
+      <br />
+      <%= pluralize tweet.reply_count, "Reply" %> | 
+      <%= pluralize tweet.retweet_count, "Retweet" %> | 
+      <%= pluralize tweet.favorite_count, "Like" %>
+      </p>
+      <br />
+    <% end %>
+  </div>
+<% end %>
 
 <p>
+Thanks,<br />
 <a href="https://twitter.com/sweepyourtweets">@SweepYourTweets</a>
 </p>

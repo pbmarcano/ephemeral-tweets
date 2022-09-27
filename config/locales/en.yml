@@ -36,7 +36,7 @@ en:
       subject: "Can't find your Twitter account!"
   upcoming_mailer:
     notify:
-      subject: "%{count} tweets will be deleted this week"
+      subject: "%{number_of_tweets} will be deleted this week"
   upload_archive_mailer:
     bad_file:
       subject: "File upload failed"
