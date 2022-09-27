@@ -8,9 +8,9 @@
 
   <div class="flex items-center space-x-4 sm:space-x-2 text-lg sm:text-xl">
     <%= form.check_box :upcoming_notification,
-      class: "h-5 w-5 rounded text-sky-500 dark:bg-slate-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
+      class: "h-4 w-4 rounded text-sky-500 dark:bg-slate-700 dark:border-none focus:outline-none focus:ring-sky-700 focus:border-sky-700",
       data: { action: "autosubmit#submit" } %>
-    <%= form.label :upcoming_notification, class: "leading-tight" do %>
+    <%= form.label :upcoming_notification, class: "text-sm leading-tight" do %>
       <span class="inline-block">Email this to me every Sunday</span>
     <% end %>
   </div>
