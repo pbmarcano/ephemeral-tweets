@@ -8,7 +8,7 @@
   @<%= current_user.username %>
 <% end %>
 
-<div class="prose text-slate-800 dark:text-slate-500">
+<div class="prose prose-slate dark:prose-invert">
   <p>
   User since: <%= current_user.created_at.to_date.to_s(:long_ordinal) %>
   </p>
@@ -18,17 +18,18 @@
   <%= subscription_status %>
   </p>
   <ul>
+    <% if current_user.active? %>
+      <li><%= manage_subscription_link %></li>
+    <% end %>
     <% if current_user.grace_period? %>
       <li>
         <%= button_to "Resume Subscription", subscription_path, method: :patch, class: "text-sky-500 underline" %>
       </li>
     <% else %>
       <li>
-        <%= button_to "Cancel Subscription", subscription_path, method: :delete, class: "text-sky-500 underline" %>
+        <%= button_to "Cancel Subscription", subscription_path, method: :delete, class: "text-sky-500 underline" %> 
+        <span class="text-slate-600 dark:text-slate-400 text-sm">Your account will remain active until the end of your billing period.</span>
       </li>
-    <% end %>
-    <% if current_user.active? %>
-      <li><%= manage_subscription_link %></li>
     <% end %>
   </ul>
 
