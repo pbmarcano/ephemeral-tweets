@@ -1,12 +1,16 @@
 module BillingsHelper
   def subscription_status
-    if current_user.grace_period?
-      "Subscription cancelled. Active until #{subscription_end}."
-    elsif current_user.active?
-      "Subscribed at $29/year."
-    elsif current_user.cancelled?
-      "Subscription cancelled."
-    end
+    if current_user.actively_subscribed?
+      if current_user.grace_period?
+        "Auto-renew is off. Active until #{subscription_end}."
+      elsif current_user.active?
+        "Subscribed at $29/year."
+      elsif current_user.cancelled?
+        "Subscription cancelled."
+      end
+    else
+      "Not subscribed."
+    end 
   end
 
   def manage_subscription_link

@@ -5,12 +5,25 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    # queue account deletion 
+    if safe_to_delete_user?
+      DestroyUserJob.perform_later(current_user)
 
-    # sign out user
-    session[:user_id] = nil
-    
-    # redirect to home screen
-    redirect_to root_path
+      session[:user_id] = nil # sign out
+
+      redirect_to root_path
+    else
+      redirect_to account_path
+    end
+
+  end
+
+  private
+
+  def safe_to_delete_user?
+    if current_user.actively_subscribed?
+      return current_user.cancelled?
+    else
+      return true
+    end
   end
 end

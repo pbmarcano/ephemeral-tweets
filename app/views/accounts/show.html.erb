@@ -13,35 +13,48 @@
   User since: <%= current_user.created_at.to_date.to_s(:long_ordinal) %>
   </p>
 
-  <h2>Subscription</h2>
-  <p>
-  <%= subscription_status %>
-  </p>
-  <ul>
-    <% if current_user.active? %>
-      <li><%= manage_subscription_link %></li>
-    <% end %>
-    <% if current_user.grace_period? %>
-      <li>
-        <%= button_to "Resume Subscription", subscription_path, method: :patch, class: "text-sky-500 underline" %>
-      </li>
-    <% else %>
-      <li>
-        <%= button_to "Cancel Subscription", subscription_path, method: :delete, class: "text-sky-500 underline" %> 
-        <span class="text-slate-600 dark:text-slate-400 text-sm">Your account will remain active until the end of your billing period.</span>
-      </li>
-    <% end %>
-  </ul>
+  <% if current_user.actively_subscribed? %>
 
-  <h2>Delete Account</h2>
-  <p>
-  <% unless current_user.cancelled? %>
-    You must cancel your subscription before you can delete your account.
-  <% end %>
-  <ul>
-    <% if current_user.cancelled? %>
-      <li><%= button_to "Delete your account", account_path, method: :delete, class: "text-red-600 underline" %></li>
+    <h2>Subscription</h2>
+    <p>
+    <%= subscription_status %>
+    </p>
+    <ul>
+      <% if current_user.grace_period? %>
+        <li>
+          <%= button_to "Turn on auto-renew", subscription_path, method: :patch, class: "text-sky-500 underline" %>
+        </li>
+      <% else %>
+        <li>
+          <%= button_to "Turn off auto-renew", subscription_path, method: :delete, class: "text-sky-500 underline" %> 
+          <span class="text-slate-600 dark:text-slate-400 text-sm">Your account will remain active until the end of your billing period.</span>
+        </li>
+      <% end %>
+      <% if current_user.active? %>
+        <li><%= manage_subscription_link %></li>
+      <% end %>
+    </ul>
+
+
+    <h2>Delete Account</h2>
+    <p>
+    <% unless current_user.cancelled? %>
+      You must turn off auto-renew or cancel your subscription before you can delete your account.
     <% end %>
-  </ul>
-  </p>
+    <ul>
+      <% if current_user.cancelled? %>
+        <li><%= button_to "Delete your account", account_path, method: :delete, class: "text-red-600 underline" %></li>
+      <% end %>
+    </ul>
+    </p>
+
+  <% else %>
+
+    <h2>Subscribe Today</h2>
+    <p>Subscribe to Tweet Sweeper to automatically delete your old tweets.</p>
+    <%= turbo_frame_tag "checkout_button", src: checkout_path %>
+
+    <%= button_to "or delete your account", account_path, method: :delete, class: "mt-8 text-red-600 underline" %>
+
+  <% end %>
 </div>

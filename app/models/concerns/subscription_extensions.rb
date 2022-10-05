@@ -8,6 +8,12 @@ module SubscriptionExtensions
   private
 
   def disable_sweeping
-    self.customer.owner.setting.disable_sweeping unless self.active?
+    if user.present?
+      user.setting.disable_sweeping unless self.active?
+    end
+  end
+
+  def user 
+    @user ||= self.customer.owner
   end
 end
