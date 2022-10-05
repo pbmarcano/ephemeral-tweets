@@ -1,0 +1,46 @@
+<% content_for :title, "Account" %>
+
+<%= render "shared/header" do %>
+  Account
+<% end %>
+
+<%= render "shared/subheader" do %>
+  @<%= current_user.username %>
+<% end %>
+
+<div class="prose text-slate-800 dark:text-slate-500">
+  <p>
+  User since: <%= current_user.created_at.to_date.to_s(:long_ordinal) %>
+  </p>
+
+  <h2>Subscription</h2>
+  <p>
+  <%= subscription_status %>
+  </p>
+  <ul>
+    <% if current_user.grace_period? %>
+      <li>
+        <%= button_to "Resume Subscription", subscription_path, method: :patch, class: "text-sky-500 underline" %>
+      </li>
+    <% else %>
+      <li>
+        <%= button_to "Cancel Subscription", subscription_path, method: :delete, class: "text-sky-500 underline" %>
+      </li>
+    <% end %>
+    <% if current_user.active? %>
+      <li><%= manage_subscription_link %></li>
+    <% end %>
+  </ul>
+
+  <h2>Delete Account</h2>
+  <p>
+  <% unless current_user.cancelled? %>
+    You must cancel your subscription before you can delete your account.
+  <% end %>
+  <ul>
+    <% if current_user.cancelled? %>
+      <li><%= button_to "Delete your account", account_path, method: :delete, class: "text-red-600 underline" %></li>
+    <% end %>
+  </ul>
+  </p>
+</div>

@@ -77,6 +77,18 @@ class User < ApplicationRecord
     actively_subscribed? ? payment_processor.billing_portal : nil
   end
 
+  def active?
+    payment_processor.subscription.active?
+  end
+
+  def grace_period?
+    payment_processor.subscription.on_grace_period?
+  end
+
+  def cancelled?
+    payment_processor.subscription.cancelled?
+  end
+
   def name
     "@#{username}"
   end

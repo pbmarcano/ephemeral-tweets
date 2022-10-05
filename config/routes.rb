@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # app routes
   get "/auth/:provider/callback", to: "sessions#create"
+  resource :account, only: [ :show, :destroy ] 
   resource :billing, only: :show
   resource :checkout, only: :show
   resource :home, only: :show
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resource :search, only: :show
   resource :session, only: :destroy
   resources :settings, only: :update
+  resource :subscription, only: [:update, :destroy]
   resources :tweets, only: [:index, :show, :destroy] do
     collection do
       post :index

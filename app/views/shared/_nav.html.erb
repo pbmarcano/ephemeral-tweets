@@ -30,10 +30,8 @@
             <div class="text-sm font-medium text-slate-500 dark:text-slate-400">Signed in as</div>
             <div class="text-base font-medium text-slate-800 dark:text-slate-300">@<%= current_user.username %></div>
           </div>
+          <%= link_to "Manage Account", account_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
           <%= link_to "Upload Archive", upload_archive_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
-          <% if current_user.actively_subscribed? %>
-            <%= link_to "Manage Subscription", billing_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
-          <% end %>
           <% if Rails.env.development? %>
             <%= link_to "DEV:Fetch tweets", fetch_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
             <%= link_to "DEV:Sweep tweets", sweep_tweets_path, class: "block py-2 px-4 text-sm dark:hover:bg-slate-600 hover:bg-slate-100 text-slate-700 dark:text-slate-400 border-b dark:border-slate-800" %>
