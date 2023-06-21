@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 6.hours do
+every 1.day do
   rake "tweets:fetch"
   rake "heya:scheduler"
 end
