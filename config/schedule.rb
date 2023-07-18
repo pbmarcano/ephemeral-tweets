@@ -19,10 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day do
-  rake "tweets:fetch"
-  rake "heya:scheduler"
-end
+# every 1.day do
+#   rake "tweets:fetch"
+#   rake "heya:scheduler"
+# end
 
 every 12.hours do
   rake "tweets:sweep"
