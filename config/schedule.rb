@@ -25,7 +25,7 @@
 # end
 
 every 12.hours do
-  rake "tweets:sweep"
+  # rake "tweets:sweep"
 end
 
 every 1.day, at: '2:30 am' do
@@ -33,5 +33,5 @@ every 1.day, at: '2:30 am' do
 end
 
 every :sunday, at: '05:00pm' do
-  rake "upcoming:notify_users"
+  # rake "upcoming:notify_users"
 end
